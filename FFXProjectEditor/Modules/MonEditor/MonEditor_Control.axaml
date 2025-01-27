@@ -1,0 +1,582 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:FFXProjectEditor"
+             xmlns:converters="clr-namespace:FFXProjectEditor.Converters"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.MonEditor_Control"
+			 Name="ThisControl">
+
+	<UserControl.Resources>
+		<converters:GameCategory_Converter x:Key="GameCategoryConverter"/>
+	</UserControl.Resources>
+
+	<DockPanel>
+
+		<!-- Bottom bar -->
+		<StackPanel DockPanel.Dock="Bottom">
+			<Button Click="Button_Save" HorizontalAlignment="Right">Save</Button>
+		</StackPanel>
+
+		<!-- Editor -->
+		<TabControl SelectedIndex="{Binding SelectorDM.SelectedTab}">
+
+			<!-- STATUS -->
+			<TabItem Header="Status">
+				<ScrollViewer>
+					<StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+
+						<Expander Header="Info" IsExpanded="{Binding SelectorDM.InfoExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel Orientation="Vertical">
+								<Label>Name</Label>
+								<TextBox IsReadOnly="True" Text="{Binding MonsterStatSheet.Name}"></TextBox>
+								<Label>Sensor</Label>
+								<TextBox IsReadOnly="True" Text="{Binding MonsterStatSheet.Sensor}"></TextBox>
+								<Label>Scan</Label>
+								<TextBox IsReadOnly="True" Text="{Binding MonsterStatSheet.Scan}"></TextBox>
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Stats" IsExpanded="{Binding SelectorDM.StatsExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel Orientation="Vertical">
+
+								<WrapPanel>
+									<StackPanel Width="220" Height="150">
+										<local:Property_Template Margin="5" Property_Label="HP Overkill" Property_Value="{Binding MonsterStatSheet.HpOverkill}" BorderWidth="200" ValueBorderWidth="100"/>
+									</StackPanel>
+									<StackPanel Width="220" Height="150">
+										<local:Property_Template Margin="5" Grid.Row="0" Grid.Column="1" Property_Label="HP" Property_Value="{Binding MonsterStatSheet.Hp}" BorderWidth="200" ValueBorderWidth="100"/>
+										<local:Property_Template Margin="5" Grid.Row="1" Grid.Column="1" Property_Label="MP" Property_Value="{Binding MonsterStatSheet.Mp}" BorderWidth="200" ValueBorderWidth="100"/>
+									</StackPanel>
+									<StackPanel Width="220" Height="150">
+										<local:Property_Template Margin="5" Grid.Row="0" Grid.Column="2" Property_Label="Strength" Property_Value="{Binding MonsterStatSheet.Strength}" BorderWidth="200" ValueBorderWidth="100"/>
+										<local:Property_Template Margin="5" Grid.Row="1" Grid.Column="2" Property_Label="Defense" Property_Value="{Binding MonsterStatSheet.Defense}" BorderWidth="200" ValueBorderWidth="100"/>
+									</StackPanel>
+									<StackPanel Width="220" Height="150">
+										<local:Property_Template Margin="5" Grid.Row="0" Grid.Column="3" Property_Label="Magic" Property_Value="{Binding MonsterStatSheet.Magic}" BorderWidth="200" ValueBorderWidth="100"/>
+										<local:Property_Template Margin="5" Grid.Row="1" Grid.Column="3" Property_Label="M. Defense" Property_Value="{Binding MonsterStatSheet.MagicDefense}" BorderWidth="200" ValueBorderWidth="100"/>
+									</StackPanel>
+									<StackPanel Width="220" Height="150">
+										<local:Property_Template Margin="5" Grid.Row="0" Grid.Column="4" Property_Label="Agility" Property_Value="{Binding MonsterStatSheet.Agility}" BorderWidth="200" ValueBorderWidth="100"/>
+										<local:Property_Template Margin="5" Grid.Row="1" Grid.Column="4" Property_Label="Luck" Property_Value="{Binding MonsterStatSheet.Luck}" BorderWidth="200" ValueBorderWidth="100"/>
+									</StackPanel>
+									<StackPanel Width="220" Height="150">
+										<local:Property_Template Margin="5" Grid.Row="0" Grid.Column="5" Property_Label="Evasion" Property_Value="{Binding MonsterStatSheet.Evasion}" BorderWidth="200" ValueBorderWidth="100"/>
+										<local:Property_Template Margin="5" Grid.Row="1" Grid.Column="5" Property_Label="Accuracy" Property_Value="{Binding MonsterStatSheet.Accuracy}" BorderWidth="200" ValueBorderWidth="100"/>
+									</StackPanel>
+								</WrapPanel>
+
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Properties" IsExpanded="{Binding SelectorDM.PropertiesExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+								<WrapPanel>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_Armored}">Armored</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityFractionalDamage}">ImmunityFractionalDamage</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityLife}">ImmunityLife</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunitySensor}">ImmunitySensor</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityScanAgain_Maybe}">ImmunityScanAgain</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityPhysicalDamage}">ImmunityPhysicalDamage</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityMagicDamage}">ImmunityMagicDamage</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityAllDamage}">ImmunityAllDamage</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityDelay}">ImmunityDelay</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunitySlice_Maybe}">ImmunitySlice</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Prop_ImmunityBribe_Maybe}">ImmunityBribe</CheckBox>
+								</WrapPanel>
+								<WrapPanel HorizontalAlignment="Center">
+									<local:Property_Template Margin="5" Property_Label="Poison Damage" Property_Value="{Binding MonsterStatSheet.PoisonDamage}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Doom Counter" Property_Value="{Binding MonsterStatSheet.DoomCount}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Elemental Weaknesses" IsExpanded="{Binding SelectorDM.ElementalWeaknessesExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+
+								<Grid RowDefinitions="*,*,*,*,*" ColumnDefinitions="*,*,*,*,*,*" Width="500">
+									<Label Grid.Row="0" Grid.Column="1" Width="100" HorizontalContentAlignment="Center">Fire</Label>
+									<Label Grid.Row="0" Grid.Column="2" Width="100" HorizontalContentAlignment="Center">Blizzard</Label>
+									<Label Grid.Row="0" Grid.Column="3" Width="100" HorizontalContentAlignment="Center">Thunder</Label>
+									<Label Grid.Row="0" Grid.Column="4" Width="100" HorizontalContentAlignment="Center">Water</Label>
+									<Label Grid.Row="0" Grid.Column="5" Width="100" HorizontalContentAlignment="Center">Holy</Label>
+
+									<Label Grid.Row="1" Grid.Column="0">Absorb</Label>
+									<CheckBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.AbsorbFire}"/>
+									<CheckBox Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.AbsorbBlizzard}"/>
+									<CheckBox Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.AbsorbThunder}"/>
+									<CheckBox Grid.Row="1" Grid.Column="4" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.AbsorbWater}"/>
+									<CheckBox Grid.Row="1" Grid.Column="5" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.AbsorbHoly}"/>
+
+									<Label Grid.Row="2" Grid.Column="0">Immune</Label>
+									<CheckBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ImmuneFire}"/>
+									<CheckBox Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ImmuneBlizzard}"/>
+									<CheckBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ImmuneThunder}"/>
+									<CheckBox Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ImmuneWater}"/>
+									<CheckBox Grid.Row="2" Grid.Column="5" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ImmuneHoly}"/>
+
+									<Label Grid.Row="3" Grid.Column="0">Resist</Label>
+									<CheckBox Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ResistFire}"/>
+									<CheckBox Grid.Row="3" Grid.Column="2" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ResistBlizzard}"/>
+									<CheckBox Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ResistThunder}"/>
+									<CheckBox Grid.Row="3" Grid.Column="4" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ResistWater}"/>
+									<CheckBox Grid.Row="3" Grid.Column="5" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.ResistHoly}"/>
+
+									<Label Grid.Row="4" Grid.Column="0">Weak</Label>
+									<CheckBox Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.WeakFire}"/>
+									<CheckBox Grid.Row="4" Grid.Column="2" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.WeakBlizzard}"/>
+									<CheckBox Grid.Row="4" Grid.Column="3" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.WeakThunder}"/>
+									<CheckBox Grid.Row="4" Grid.Column="4" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.WeakWater}"/>
+									<CheckBox Grid.Row="4" Grid.Column="5" HorizontalAlignment="Center" IsChecked="{Binding MonsterStatSheet.ElementalWeakness.WeakHoly}"/>
+								</Grid>
+
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Statuses" IsExpanded="{Binding SelectorDM.StatusExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+								<Label FontSize="20" FontWeight="Bold">Resistances</Label>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Death" Property_Value="{Binding MonsterStatSheet.StatusResistance.Death}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Zombie" Property_Value="{Binding MonsterStatSheet.StatusResistance.Zombie}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Petrify" Property_Value="{Binding MonsterStatSheet.StatusResistance.Petrify}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Poison" Property_Value="{Binding MonsterStatSheet.StatusResistance.Poison}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="BreakPower" Property_Value="{Binding MonsterStatSheet.StatusResistance.BreakPower}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="BreakMagic" Property_Value="{Binding MonsterStatSheet.StatusResistance.BreakMagic}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="BreakArmor" Property_Value="{Binding MonsterStatSheet.StatusResistance.BreakArmor}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="BreakMental" Property_Value="{Binding MonsterStatSheet.StatusResistance.BreakMental}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Confuse" Property_Value="{Binding MonsterStatSheet.StatusResistance.Confuse}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Berserk" Property_Value="{Binding MonsterStatSheet.StatusResistance.Berserk}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Provoke" Property_Value="{Binding MonsterStatSheet.StatusResistance.Provoke}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Threaten" Property_Value="{Binding MonsterStatSheet.StatusResistance.Threaten}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Sleep" Property_Value="{Binding MonsterStatSheet.StatusResistance.Sleep}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Silence" Property_Value="{Binding MonsterStatSheet.StatusResistance.Silence}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Darkness" Property_Value="{Binding MonsterStatSheet.StatusResistance.Darkness}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Shell" Property_Value="{Binding MonsterStatSheet.StatusResistance.Shell}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Protect" Property_Value="{Binding MonsterStatSheet.StatusResistance.Protect}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Reflect" Property_Value="{Binding MonsterStatSheet.StatusResistance.Reflect}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="NulTide" Property_Value="{Binding MonsterStatSheet.StatusResistance.NulTide}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="NulBlaze" Property_Value="{Binding MonsterStatSheet.StatusResistance.NulBlaze}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="NulShock" Property_Value="{Binding MonsterStatSheet.StatusResistance.NulShock}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="NulFrost" Property_Value="{Binding MonsterStatSheet.StatusResistance.NulFrost}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Regen" Property_Value="{Binding MonsterStatSheet.StatusResistance.Regen}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Haste" Property_Value="{Binding MonsterStatSheet.StatusResistance.Haste}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Slow" Property_Value="{Binding MonsterStatSheet.StatusResistance.Slow}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+								<Label FontSize="20" FontWeight="Bold">Auto</Label>
+								<Separator/>
+								<Label>Permanent</Label>
+								<Separator Opacity="0.2"/>
+								<WrapPanel>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Death}">Death</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Zombie}">Zombie</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Petrify}">Petrify</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Poison}">Poison</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_BreakPower}">BreakPower</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_BreakMagic}">BreakMagic</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_BreakArmor}">BreakArmor</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_BreakMental}">BreakMental</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Confuse}">Confuse</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Berserk}">Berserk</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Provoke}">Provoke</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Threaten}">Threaten</CheckBox>
+								</WrapPanel>
+								<Label>Temporal</Label>
+								<Separator Opacity="0.2"/>
+								<WrapPanel>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Sleep}">Sleep</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Silence}">Silence</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Shell}">Shell</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Protect}">Protect</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Reflect}">Reflect</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_NulTide}">NulTide</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_NulBlaze}">NulBlaze</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_NulShock}">NulShock</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_NulFrost}">NulFrost</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Regen}">Regen</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Haste}">Haste</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Slow}">Slow</CheckBox>
+								</WrapPanel>
+								<Label>Special</Label>
+								<Separator Opacity="0.2"/>
+								<WrapPanel>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Scan}">Scan</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_DistillPower}">DistillPower</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_DistillMana}">DistillMana</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_DistillSpeed}">DistillSpeed</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Unused3_04}">Distill Unused</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_DistillAbility}">DistillAbility</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Shield}">Shield</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Boost}">Boost</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Eject}">Eject</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_AutoLife}">AutoLife</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Curse}">Curse</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Defend}">Defend</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Guard}">Guard</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Sentinel}">Sentinel</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Auto_Doom}">Doom</CheckBox>
+								</WrapPanel>
+								<Label FontSize="20" FontWeight="Bold">Immunities</Label>
+								<Separator/>
+								<WrapPanel>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Scan}">Scan</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_DistillPower}">DistillPower</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_DistillMana}">DistillMana</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_DistillSpeed}">DistillSpeed</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Unused3_04}">Distill Unused</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_DistillAbility}">DistillAbility</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Shield}">Shield</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Boost}">Boost</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Eject}">Eject</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_AutoLife}">AutoLife</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Curse}">Curse</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Defend}">Defend</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Guard}">Guard</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Sentinel}">Sentinel</CheckBox>
+									<CheckBox Margin="5" Width="200" IsChecked="{Binding MonsterStatSheet.Immunity_Doom}">Doom</CheckBox>
+								</WrapPanel>
+							</StackPanel>
+
+						</Expander>
+
+						<Expander Header="Menu Abilities" IsExpanded="{Binding SelectorDM.MenuAbilitiesExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+
+								<local:GameIndex_Template Margin="5" GameIndex_Label="Forced Ability" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.ForcedAbility}"/>
+								<WrapPanel>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 1" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability1}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 2" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability2}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 3" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability3}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 4" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability4}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 5" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability5}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 6" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability6}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 7" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability7}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 8" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability8}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 9" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability9}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 10" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability10}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 11" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability11}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 12" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability12}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 13" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability13}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 14" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability14}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 15" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability15}"/>
+									<local:GameIndex_Template Margin="5" GameIndex_Label="Ability 16" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterStatSheet.Ability16}"/>
+								</WrapPanel>
+
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Identifiers" IsExpanded="{Binding SelectorDM.IdentifiersExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Monster Id" Property_Value="{Binding MonsterStatSheet.MonsterId}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Arena Id" Property_Value="{Binding MonsterStatSheet.ArenaId}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Model Id" Property_Value="{Binding MonsterStatSheet.ModelId}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Model 2 Id" Property_Value="{Binding MonsterStatSheet.Model2Id}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+								<local:Property_Template Margin="5" HorizontalAlignment="Left" Property_Label="Ctb Icon Id" Property_Value="{Binding MonsterStatSheet.CtbIconId}" BorderWidth="200" ValueBorderWidth="50"/>
+							</StackPanel>
+						</Expander>
+
+					</StackPanel>
+				</ScrollViewer>
+			</TabItem>
+
+			<!-- LOOT -->
+			<TabItem Header="Loot">
+				<ScrollViewer>
+					<StackPanel>
+						<Expander Header="Stats" IsExpanded="{Binding SelectorDM.LootStatsExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+								<local:GameIndex_Template Margin="5" GameIndex_Label="Ronso Rage" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RonsoRage}"/>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Gil" Property_Value="{Binding MonsterLoot.Gil}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Ap" Property_Value="{Binding MonsterLoot.Ap}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Ap Overkill" Property_Value="{Binding MonsterLoot.ApOverkill}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Zanmato Level" Property_Value="{Binding MonsterLoot.ZanmatoLevel}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Unk1" Property_Value="{Binding MonsterLoot.Unk1}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Unk2" Property_Value="{Binding MonsterLoot.Unk2}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Unk3" Property_Value="{Binding MonsterLoot.Unk3}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Drops" IsExpanded="{Binding SelectorDM.LootDropsExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+								<StackPanel Orientation="Horizontal">
+									<local:Property_Template Margin="5" Property_Label="Drop1 Chance" Property_Value="{Binding MonsterLoot.Drop1Chance}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Drop2 Chance" Property_Value="{Binding MonsterLoot.Drop2Chance}" BorderWidth="200" ValueBorderWidth="50"/>
+								</StackPanel>
+								<Label FontSize="20" FontWeight="Bold">Drops</Label>
+								<Separator/>
+								<WrapPanel>
+									<local:Loot_Template Margin="5" Loot_Label="Drop 1" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.Drop1}" Loot_Count="{Binding MonsterLoot.Drop1Count}"/>
+									<local:Loot_Template Margin="5" Loot_Label="Drop 1 Rare" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.Drop1Rare}" Loot_Count="{Binding MonsterLoot.Drop1RareCount}"/>
+								</WrapPanel>
+
+								<WrapPanel>
+									<local:Loot_Template Margin="5" Loot_Label="Drop 2" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.Drop2}" Loot_Count="{Binding MonsterLoot.Drop2Count}"/>
+									<local:Loot_Template Margin="5" Loot_Label="Drop 2 Rare" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.Drop2Rare}" Loot_Count="{Binding MonsterLoot.Drop2RareCount}"/>
+								</WrapPanel>
+
+								<Label FontSize="20" FontWeight="Bold">Drops Overkill</Label>
+								<Separator/>
+								<WrapPanel>
+									<local:Loot_Template Margin="5" Loot_Label="Drop Overkill" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.DropOverkill1}" Loot_Count="{Binding MonsterLoot.DropOverkillCount}"/>
+									<local:Loot_Template Margin="5" Loot_Label="Drop Overkill Rare" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.DropOverkill1Rare}" Loot_Count="{Binding MonsterLoot.DropOverkillRareCount}"/>
+								</WrapPanel>
+
+								<WrapPanel>
+									<local:Loot_Template Margin="5" Loot_Label="Drop Overkill 2" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.DropOverkill2}" Loot_Count="{Binding MonsterLoot.DropOverkill2Count}"/>
+									<local:Loot_Template Margin="5" Loot_Label="Drop Overkill 2 Rare" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.DropOverkill2Rare}" Loot_Count="{Binding MonsterLoot.DropOverkill2RareCount}"/>
+								</WrapPanel>
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Steal / Bribe" IsExpanded="{Binding SelectorDM.LootStealExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+								<local:Property_Template Margin="5" Property_Label="Steal Chance" Property_Value="{Binding MonsterLoot.StealChance}" BorderWidth="200" ValueBorderWidth="50"/>
+								<Label FontSize="20" FontWeight="Bold">Steal</Label>
+								<Separator/>
+								<WrapPanel>
+									<local:Loot_Template Margin="5" Loot_Label="Steal" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.Steal}" Loot_Count="{Binding MonsterLoot.StealCount}"/>
+									<local:Loot_Template Margin="5" Loot_Label="Steal Rare" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.StealRare}" Loot_Count="{Binding MonsterLoot.StealRareCount}"/>
+								</WrapPanel>
+
+								<Label FontSize="20" FontWeight="Bold">Bribe</Label>
+								<Separator/>
+								<local:Loot_Template Margin="5" HorizontalAlignment="Left" Loot_Label="Bribe" CategOptions="{Binding CategoryOptions}" Loot_Object="{Binding MonsterLoot.Bribe}" Loot_Count="{Binding MonsterLoot.BribeCount}"/>
+							</StackPanel>
+						</Expander>
+
+						<Expander Header="Gear" IsExpanded="{Binding SelectorDM.LootGearExpanded}" HorizontalAlignment="Stretch">
+							<StackPanel>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Gear Slot Count" Property_Value="{Binding MonsterLoot.GearSlotCount}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Gear Formula" Property_Value="{Binding MonsterLoot.GearFormula}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Gear Crit" Property_Value="{Binding MonsterLoot.GearCrit}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Gear Attack" Property_Value="{Binding MonsterLoot.GearAttack}" BorderWidth="200" ValueBorderWidth="50"/>
+									<local:Property_Template Margin="5" Property_Label="Gear Ability Count" Property_Value="{Binding MonsterLoot.GearAbilityCount}" BorderWidth="220" ValueBorderWidth="50"/>
+								</WrapPanel>
+
+								<Border Margin="5" Padding="5" BorderThickness="1" BorderBrush="AliceBlue" CornerRadius="5">
+									<TabControl>
+										<TabItem Header="Tidus">
+											<WrapPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Weapon</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusWeapons[7]}"/>
+												</StackPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Armor</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.TidusArmors[7]}"/>
+												</StackPanel>
+											</WrapPanel>
+										</TabItem>
+										<TabItem Header="Yuna">
+											<WrapPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Weapon</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaWeapons[7]}"/>
+												</StackPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Armor</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.YunaArmors[7]}"/>
+												</StackPanel>
+											</WrapPanel>
+										</TabItem>
+										<TabItem Header="Auron">
+											<WrapPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Weapon</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronWeapons[7]}"/>
+												</StackPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Armor</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.AuronArmors[7]}"/>
+												</StackPanel>
+											</WrapPanel>
+										</TabItem>
+										<TabItem Header="Kimahri">
+											<WrapPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Weapon</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriWeapons[7]}"/>
+												</StackPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Armor</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.KimahriArmors[7]}"/>
+												</StackPanel>
+											</WrapPanel>
+										</TabItem>
+										<TabItem Header="Wakka">
+											<WrapPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Weapon</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaWeapons[7]}"/>
+												</StackPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Armor</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.WakkaArmors[7]}"/>
+												</StackPanel>
+											</WrapPanel>
+										</TabItem>
+										<TabItem Header="Lulu">
+											<WrapPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Weapon</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluWeapons[7]}"/>
+												</StackPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Armor</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.LuluArmors[7]}"/>
+												</StackPanel>
+											</WrapPanel>
+										</TabItem>
+										<TabItem Header="Rikku">
+											<WrapPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Weapon</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuWeapons[7]}"/>
+												</StackPanel>
+												<StackPanel>
+													<Label FontSize="20" FontWeight="Bold">Armor</Label>
+													<Separator/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[0]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[1]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[2]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[3]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[4]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[5]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[6]}"/>
+													<local:GameIndex_Template Margin="5" GameIndex_Label="" IsLabelVisible="False" BorderThickness="0" CategOptions="{Binding CategoryOptions}" GameIndex_Object="{Binding MonsterLoot.RikkuArmors[7]}"/>
+												</StackPanel>
+											</WrapPanel>
+										</TabItem>
+									</TabControl>
+								</Border>
+								
+							</StackPanel>
+						</Expander>
+					</StackPanel>
+
+				</ScrollViewer>
+			</TabItem>
+		</TabControl>
+
+	</DockPanel>
+
+
+</UserControl>

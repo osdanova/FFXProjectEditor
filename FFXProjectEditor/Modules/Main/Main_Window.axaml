@@ -1,0 +1,44 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="FFXProjectEditor.Main_Window"
+        Title="FFX Project Editor">
+
+	<DockPanel>
+
+		<!-- TOP MENU -->
+		<Menu DockPanel.Dock="Top">
+			<MenuItem Header="Monster Editor" Click="MenuItem_MonsterEditor" IsEnabled="{Binding ProjService.IsProjectLoaded}"></MenuItem>
+			<MenuItem Header="Battle" IsEnabled="{Binding ProjService.IsProjectLoaded}">
+				<MenuItem Header="Items" Click="MenuItem_Items"></MenuItem>
+				<MenuItem Header="Commands" Click="MenuItem_Commands"></MenuItem>
+				<MenuItem Header="Monster Commands 1" Click="MenuItem_MonsterMagic1"></MenuItem>
+				<MenuItem Header="Monster Commands 2" Click="MenuItem_MonsterMagic2"></MenuItem>
+			</MenuItem>
+			<MenuItem Header="Tools" IsEnabled="{Binding ProcService.IsAlive}">
+				<MenuItem Header="Debug Menu" Click="MenuItem_DebugMenu"></MenuItem>
+			</MenuItem>
+		</Menu>
+
+		<!-- BOTTOM MENU -->
+		<Grid DockPanel.Dock="Bottom" Background="DarkGray"
+			  ColumnDefinitions="*,*">
+			<!-- Project location -->
+			<StackPanel Grid.Column="0">
+				<Button Content="{Binding ProjectPath}" Click="Button_ProjectPath" DragDrop.AllowDrop="True"></Button>
+			</StackPanel>
+			<!-- Game Hook info -->
+			<StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" IsVisible="True">
+				<Label VerticalAlignment="Center">Hook</Label>
+				<CheckBox IsChecked="{Binding ProcService.IsAlive}"/>
+			</StackPanel>
+		</Grid>
+
+		<!-- CONTENT -->
+		<ContentControl Name="ContentFrame"/>
+
+	</DockPanel>
+	
+</Window>

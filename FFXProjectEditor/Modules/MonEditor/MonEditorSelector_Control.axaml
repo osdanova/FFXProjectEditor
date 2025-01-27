@@ -1,0 +1,27 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.MonEditorSelector_Control">
+
+
+	<Grid ColumnDefinitions="300, *">
+
+		<DockPanel Grid.Column="0">
+			<StackPanel DockPanel.Dock="Bottom" Height="50" Orientation="Horizontal">
+				<TextBox VerticalAlignment="Center" Width="200" Text="{Binding FilterText}" TextChanged="Filter_Changed"/>
+			</StackPanel>
+			<ListBox Grid.Column="0" Name="MonsterList" ItemsSource="{Binding DisplayedMonsters}" SelectionMode="Single" SelectionChanged="ListBox_SelectionChanged">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<Label Content="{Binding Name}"/>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
+		</DockPanel>
+		
+		<ContentControl Grid.Column="1" Name="ContentFrame" />
+	</Grid>
+	
+</UserControl>

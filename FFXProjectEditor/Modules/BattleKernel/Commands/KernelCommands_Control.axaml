@@ -1,0 +1,51 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.KernelCommands_Control">
+
+	<Grid RowDefinitions="30,*,50">
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0">
+		</StackPanel>
+		<!-- TABLE -->
+		<DataGrid Grid.Row="1" Margin="20" Name="DGrid"
+					ItemsSource="{Binding DisplayedCommands, Mode=TwoWay}"
+					GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray">
+
+			<DataGrid.Columns>
+
+				<DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
+				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+				<DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+				<DataGridTextColumn Header="DamageType" Binding="{Binding DamageType}"/>
+				<DataGridTextColumn Header="CostMp" Binding="{Binding CostMp}"/>
+				<DataGridTextColumn Header="CostOverdrive" Binding="{Binding CostOverdrive}"/>
+				<DataGridTextColumn Header="DamageFormula" Binding="{Binding DamageFormula}"/>
+				<DataGridTextColumn Header="AttackAccuracy" Binding="{Binding AttackAccuracy}"/>
+				<DataGridTextColumn Header="AttackPower" Binding="{Binding AttackPower}"/>
+				<DataGridTextColumn Header="HitCount" Binding="{Binding HitCount}"/>
+				<DataGridTextColumn Header="ElementFlags" Binding="{Binding ElementFlags}"/>
+				<DataGridTextColumn Header="CharacterUser" Binding="{Binding CharacterUser}"/>
+				<DataGridTextColumn Header="TargetingFlags" Binding="{Binding TargetingFlags}"/>
+				<DataGridTextColumn Header="TargetsAllowed" Binding="{Binding TargetsAllowed}"/>
+				<DataGridTextColumn Header="MenuProperties" Binding="{Binding MenuProperties}"/>
+				<DataGridTextColumn Header="SubSubMenuCategorization" Binding="{Binding SubSubMenuCategorization}"/>
+				<DataGridTextColumn Header="SubMenuCategorization" Binding="{Binding SubMenuCategorization}"/>
+				<DataGridTextColumn Header="OverdriveCategory" Binding="{Binding OverdriveCategory}"/>
+				<DataGridTextColumn Header="OrderingIndexInMenu" Binding="{Binding OrderingIndexInMenu}"/>
+
+			</DataGrid.Columns>
+
+		</DataGrid>
+		<Grid Grid.Row="2" ColumnDefinitions="*,*">
+			<StackPanel Grid.Column="0" Orientation="Horizontal">
+				<TextBox VerticalAlignment="Center" Width="200" Text="{Binding FilterText}" TextChanged="Filter_Changed"/>
+			</StackPanel>
+			<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+				<Button Click="Button_Save" Margin="0,0,30,0">Save</Button>
+			</StackPanel>
+		</Grid>
+	</Grid>
+	
+</UserControl>

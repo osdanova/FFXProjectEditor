@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.Mon_Control">
+
+	<Grid RowDefinitions="30,*,50">
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0">
+		</StackPanel>
+		
+		<!-- TABLE -->
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,0,0,0">
+			<Label>Name</Label>
+			<TextBox IsReadOnly="True" Text="{Binding Name}"></TextBox>
+			<Label>HP</Label>
+			<TextBox Text="{Binding Hp}"></TextBox>
+			<Label>Steal</Label>
+			<TextBox Text="{Binding StealId}"></TextBox>
+			<Label>Rare Steal</Label>
+			<TextBox Text="{Binding StealRareId}"></TextBox>
+		</StackPanel>
+		
+		<Grid Grid.Row="2" ColumnDefinitions="*,*">
+			<StackPanel Grid.Column="0" Orientation="Horizontal">
+			</StackPanel>
+			<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+				<Button Click="Button_Save" Margin="0,0,30,0">Save</Button>
+			</StackPanel>
+		</Grid>
+	</Grid>
+	
+</UserControl>

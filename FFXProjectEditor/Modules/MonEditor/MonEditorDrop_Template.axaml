@@ -1,0 +1,37 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:FFXProjectEditor">
+  
+  <Design.PreviewWith>
+    <StackPanel Width="1200" Spacing="10">      
+        <StackPanel Background="{DynamicResource SystemRegionBrush}">
+          <controls:MonEditorDrop_Template />
+        </StackPanel>
+    </StackPanel>
+  </Design.PreviewWith>
+ 
+  <ControlTheme x:Key="{x:Type controls:MonEditorDrop_Template}" TargetType="controls:MonEditorDrop_Template">
+    <Setter Property="Template">
+      <ControlTemplate>
+
+		  <Border Margin="5" Padding="5" BorderThickness="1" BorderBrush="AliceBlue" CornerRadius="5">
+			  <StackPanel>
+				  <Label Content="{TemplateBinding FieldLabel}"/>
+				  <StackPanel Orientation="Horizontal">
+					  <Label VerticalAlignment="Center">Item: </Label>
+					  <TextBox Width="50" Text="{Binding FieldId, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"></TextBox>
+					  <TextBox Width="300" IsReadOnly="True" Text="{Binding FieldName, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"></TextBox>
+				  </StackPanel>
+				  <StackPanel Orientation="Horizontal">
+					  <Label VerticalAlignment="Center">Count: </Label>
+					  <TextBox Width="50" IsReadOnly="True" Text="{Binding FieldCount, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"></TextBox>
+					  <Label VerticalAlignment="Center">Chance: </Label>
+					  <TextBox Width="50" IsReadOnly="True" Text="{Binding FieldChance, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"></TextBox>
+				  </StackPanel>
+			  </StackPanel>
+		  </Border>
+		  
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

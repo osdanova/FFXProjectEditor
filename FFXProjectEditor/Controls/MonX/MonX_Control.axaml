@@ -1,0 +1,89 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.MonX_Control">
+
+	<Grid RowDefinitions="30,*,50">
+		<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0">
+		</StackPanel>
+		<!-- TABLE -->
+		<DataGrid Grid.Row="1" Margin="20" Name="DGrid"
+					ItemsSource="{Binding LoadedEntries, Mode=TwoWay}"
+					GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray">
+
+			<DataGrid.Columns>
+
+				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+				<DataGridTextColumn Header="Sensor" Binding="{Binding Sensor}"/>
+				<DataGridTextColumn Header="Unk" Binding="{Binding Unk}"/>
+				<DataGridTextColumn Header="Scan" Binding="{Binding Scan}"/>
+				<DataGridTextColumn Header="Unk2" Binding="{Binding Unk2}"/>
+				<DataGridTextColumn Header="Hp" Binding="{Binding Hp}"/>
+				<DataGridTextColumn Header="Mp" Binding="{Binding Mp}"/>
+				<DataGridTextColumn Header="HpOverkill" Binding="{Binding HpOverkill}"/>
+				<DataGridTextColumn Header="Strength" Binding="{Binding Strength}"/>
+				<DataGridTextColumn Header="Defense" Binding="{Binding Defense}"/>
+				<DataGridTextColumn Header="Magic" Binding="{Binding Magic}"/>
+				<DataGridTextColumn Header="MagicDefense" Binding="{Binding MagicDefense}"/>
+				<DataGridTextColumn Header="Agility" Binding="{Binding Agility}"/>
+				<DataGridTextColumn Header="Luck" Binding="{Binding Luck}"/>
+				<DataGridTextColumn Header="Evasion" Binding="{Binding Evasion}"/>
+				<DataGridTextColumn Header="Accuracy" Binding="{Binding Accuracy}"/>
+				<DataGridTextColumn Header="PropertyFlags" Binding="{Binding PropertyFlags}"/>
+				<DataGridTextColumn Header="PoisonDamage" Binding="{Binding PoisonDamage}"/>
+				<DataGridTextColumn Header="ElementAbsorb" Binding="{Binding ElementAbsorb}"/>
+				<DataGridTextColumn Header="ElementImmune" Binding="{Binding ElementImmune}"/>
+				<DataGridTextColumn Header="ElementResist" Binding="{Binding ElementResist}"/>
+				<DataGridTextColumn Header="ElementWeak" Binding="{Binding ElementWeak}"/>
+				<DataGridTextColumn Header="StatusDeath" Binding="{Binding StatusDeath}"/>
+				<DataGridTextColumn Header="StatusZombie" Binding="{Binding StatusZombie}"/>
+				<DataGridTextColumn Header="StatusPetrify" Binding="{Binding StatusPetrify}"/>
+				<DataGridTextColumn Header="StatusPoison" Binding="{Binding StatusPoison}"/>
+				<DataGridTextColumn Header="StatusBreakPower" Binding="{Binding StatusBreakPower}"/>
+				<DataGridTextColumn Header="StatusBreakMagic" Binding="{Binding StatusBreakMagic}"/>
+				<DataGridTextColumn Header="StatusBreakArmor" Binding="{Binding StatusBreakArmor}"/>
+				<DataGridTextColumn Header="StatusBreakMental" Binding="{Binding StatusBreakMental}"/>
+				<DataGridTextColumn Header="StatusConfuse" Binding="{Binding StatusConfuse}"/>
+				<DataGridTextColumn Header="StatusBerserk" Binding="{Binding StatusBerserk}"/>
+				<DataGridTextColumn Header="StatusProvoke" Binding="{Binding StatusProvoke}"/>
+				<DataGridTextColumn Header="StatusThreaten" Binding="{Binding StatusThreaten}"/>
+				<DataGridTextColumn Header="StatusSleep" Binding="{Binding StatusSleep}"/>
+				<DataGridTextColumn Header="StatusSilence" Binding="{Binding StatusSilence}"/>
+				<DataGridTextColumn Header="StatusDarkness" Binding="{Binding StatusDarkness}"/>
+				<DataGridTextColumn Header="StatusShell" Binding="{Binding StatusShell}"/>
+				<DataGridTextColumn Header="StatusProtect" Binding="{Binding StatusProtect}"/>
+				<DataGridTextColumn Header="StatusReflect" Binding="{Binding StatusReflect}"/>
+				<DataGridTextColumn Header="StatusNulTide" Binding="{Binding StatusNulTide}"/>
+				<DataGridTextColumn Header="StatusNulBlaze" Binding="{Binding StatusNulBlaze}"/>
+				<DataGridTextColumn Header="StatusNulShock" Binding="{Binding StatusNulShock}"/>
+				<DataGridTextColumn Header="StatusNulFrost" Binding="{Binding StatusNulFrost}"/>
+				<DataGridTextColumn Header="StatusRegen" Binding="{Binding StatusRegen}"/>
+				<DataGridTextColumn Header="StatusHaste" Binding="{Binding StatusHaste}"/>
+				<DataGridTextColumn Header="StatusSlow" Binding="{Binding StatusSlow}"/>
+				<DataGridTextColumn Header="StatusFlags1" Binding="{Binding StatusFlags1}"/>
+				<DataGridTextColumn Header="StatusFlags2" Binding="{Binding StatusFlags2}"/>
+				<DataGridTextColumn Header="StatusFlags3" Binding="{Binding StatusFlags3}"/>
+				<DataGridTextColumn Header="ExtraStatusImmunities" Binding="{Binding ExtraStatusImmunities}"/>
+				<DataGridTextColumn Header="ForcedAction" Binding="{Binding ForcedAction}"/>
+				<DataGridTextColumn Header="MonsterId" Binding="{Binding MonsterId}"/>
+				<DataGridTextColumn Header="ModelId" Binding="{Binding ModelId}"/>
+				<DataGridTextColumn Header="IconId" Binding="{Binding IconId}"/>
+				<DataGridTextColumn Header="DoomCount" Binding="{Binding DoomCount}"/>
+				<DataGridTextColumn Header="ArenaId" Binding="{Binding ArenaId}"/>
+				<DataGridTextColumn Header="Model2Id" Binding="{Binding Model2Id}"/>
+
+			</DataGrid.Columns>
+
+		</DataGrid>
+		<Grid Grid.Row="2" ColumnDefinitions="*,*">
+			<StackPanel Grid.Column="0" Orientation="Horizontal">
+			</StackPanel>
+			<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+				<!-- <Button Click="Button_Save" Margin="0,0,30,0">Save</Button> -->
+			</StackPanel>
+		</Grid>
+	</Grid>
+	
+</UserControl>

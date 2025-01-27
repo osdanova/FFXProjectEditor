@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:converters="clr-namespace:FFXProjectEditor.Converters"
+        xmlns:controls="using:FFXProjectEditor">
+  
+  <Design.PreviewWith>
+    <StackPanel Width="600" Spacing="10">      
+        <StackPanel Background="{DynamicResource SystemRegionBrush}">
+          <controls:GameIndex_Template />
+        </StackPanel>
+    </StackPanel>
+  </Design.PreviewWith>
+ 
+  <ControlTheme x:Key="{x:Type controls:GameIndex_Template}" TargetType="controls:GameIndex_Template">
+    <Setter Property="Template">
+		<ControlTemplate>
+
+			<Border Width="600" Margin="5" Padding="5" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="AliceBlue" CornerRadius="5">
+
+				<Border.Resources>
+					<converters:GameCategory_Converter x:Key="GameCategoryConverter"/>
+				</Border.Resources>
+
+				<StackPanel>
+					<Label Content="{TemplateBinding GameIndex_Label}" IsVisible="{TemplateBinding IsLabelVisible}"/>
+					<DockPanel>
+						<TextBox Width="30" Text="{Binding GameIndex_Object.Index, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+						<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+							<ComboBox Width="220" HorizontalAlignment="Stretch"
+									  ItemsSource="{TemplateBinding CategOptions}"
+									  SelectedItem="{Binding GameIndex_Object.Category, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource GameCategoryConverter}, Mode=TwoWay}"/>
+						</StackPanel>
+						<TextBox DockPanel.Dock="Right" Width="300" HorizontalAlignment="Right" Text="{Binding GameIndex_Object.Name, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" IsReadOnly="True"/>
+					</DockPanel>
+				</StackPanel>
+			</Border>
+
+		</ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

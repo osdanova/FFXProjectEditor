@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:converters="clr-namespace:FFXProjectEditor.Converters"
+        xmlns:controls="using:FFXProjectEditor">
+  
+  <Design.PreviewWith>
+    <StackPanel Width="400" Spacing="10">      
+        <StackPanel Background="{DynamicResource SystemRegionBrush}">
+			<controls:Property_Template />
+		</StackPanel>
+	</StackPanel>
+</Design.PreviewWith>
+
+<ControlTheme x:Key="{x:Type controls:Property_Template}" TargetType="controls:Property_Template">
+    <Setter Property="Template">
+      <ControlTemplate>
+
+		  <Border Width="{TemplateBinding BorderWidth}" Margin="10" Padding="5" BorderThickness="1" BorderBrush="AliceBlue" CornerRadius="5">
+			  
+			  <DockPanel>
+				  <Label DockPanel.Dock="Left" VerticalAlignment="Center" Content="{TemplateBinding Property_Label}"/>
+				  <TextBox DockPanel.Dock="Right" Width="{TemplateBinding ValueBorderWidth}" HorizontalAlignment="Right" Text="{Binding Property_Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+			  </DockPanel>
+		  </Border>
+
+	  </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>
