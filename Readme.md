@@ -19,7 +19,7 @@ I recommend using the [External File Loader](https://www.nexusmods.com/finalfant
 
 Click on "Select Project Folder" at the bottom left and load your master folder. The app autodetects when your game is open and it'll hook to it when it is (Bottom right checkbox)
 
-<img src="ReadmeAssets/MainWIndow.png" width="700"/>
+<img src="ReadmeAssets/MainWindow.png" width="700"/>
 
 ### Monster Editor
 
