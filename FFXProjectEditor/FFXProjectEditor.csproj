@@ -7,7 +7,11 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>false</AvaloniaUseCompiledBindingsByDefault>
 	<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+	<ApplicationIcon>Assets\FFXProjectEditor_Logo.ico</ApplicationIcon>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Assets\FFXProjectEditor_Logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.2.3" />
