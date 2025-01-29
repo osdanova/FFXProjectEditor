@@ -53,9 +53,14 @@ namespace FFXProjectEditor.Services
         {
             if (!IsAvailable()) return "";
             if (enc == null) enc = _defaultEncoding;
-            return MemSharp.ReadString((IntPtr)offset, enc, isRelative, maxLength); ;
+            return MemSharp.ReadString((IntPtr)offset, enc, isRelative, maxLength);
         }
 
+        public void Write(int offset, byte[] value, bool isRelative = true)
+        {
+            if (!IsAvailable()) return;
+            MemSharp.Write((IntPtr)offset, value, isRelative);
+        }
         public void Write<T>(int offset, T value, bool isRelative = true)
         {
             if (!IsAvailable()) return;

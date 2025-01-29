@@ -17,6 +17,10 @@ public partial class KernelCommands_Control : UserControl
     {
         DataModel.Save();
     }
+    private void Button_LoadIngame(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.LoadInGame();
+    }
 
     private void Filter_Changed(object? sender, Avalonia.Controls.TextChangedEventArgs e)
     {

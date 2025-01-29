@@ -1,12 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FFXProjectEditor.FfxLib.Common;
 using FFXProjectEditor.Services;
 
 namespace FFXProjectEditor.Modules.DebugMenu
 {
     internal partial class DebugMenu_DataModel : ObservableObject
     {
-        private const int ADDR_ENEMY_CONTROL = 0xD2A8FA;
-
         [ObservableProperty] public bool isControlEnabled;
         public Process_Service ProcService { get => Process_Service.Instance; }
 
@@ -17,7 +16,7 @@ namespace FFXProjectEditor.Modules.DebugMenu
 
         private void CheckValues()
         {
-            bool tess = MemSharp_Service.Instance.Read<byte>(ADDR_ENEMY_CONTROL) == 1 ? true : false;
+            bool tess = MemSharp_Service.Instance.Read<byte>(MemoryMap_Util.ADDR_ENEMY_CONTROL) == 1 ? true : false;
             IsControlEnabled = tess;
         }
 
@@ -25,11 +24,11 @@ namespace FFXProjectEditor.Modules.DebugMenu
         {
             if (doEnable)
             {
-                MemSharp_Service.Instance.Write<byte>(ADDR_ENEMY_CONTROL, 1);
+                MemSharp_Service.Instance.Write<byte>(MemoryMap_Util.ADDR_ENEMY_CONTROL, 1);
             }
             else
             {
-                MemSharp_Service.Instance.Write<byte>(ADDR_ENEMY_CONTROL, 0);
+                MemSharp_Service.Instance.Write<byte>(MemoryMap_Util.ADDR_ENEMY_CONTROL, 0);
             }
             CheckValues();
         }

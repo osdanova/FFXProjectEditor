@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using FFXProjectEditor.Converters;
 using FFXProjectEditor.FfxLib.Ability;
+using FFXProjectEditor.FfxLib.Common;
 using FFXProjectEditor.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
 {
     internal partial class KernelCommands_DataModel : ObservableObject
     {
+        public Process_Service ProcService { get => Process_Service.Instance; }
         /******************************************
          * Data
          ******************************************/
@@ -87,7 +89,42 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
                 commandList.Add(command);
             }
 
-            File.WriteAllBytes(GetFilePath(), Ability_Command.WriteList(commandList, HasExtraInfo()));
+            File.WriteAllBytes(GetFilePath(), BuildFile());
+        }
+        public void LoadInGame()
+        {
+            int fileAddress;
+            if (CommandFileType == CommandFile_enum.Item)
+            {
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_ITEM);
+            }
+            else if (CommandFileType == CommandFile_enum.Command)
+            {
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_COMMAND);
+            }
+            else if (CommandFileType == CommandFile_enum.MonMagic1)
+            {
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_MONMAGIC1);
+            }
+            else if (CommandFileType == CommandFile_enum.MonMagic2)
+            {
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_MONMAGIC2);
+            }
+            else return;
+
+            MemSharp_Service.Instance.Write(fileAddress, BuildFile(), false);
+        }
+
+        private byte[] BuildFile()
+        {
+            List<Ability_Command> commandList = new();
+            for (int i = 0; i < LoadedCommands.Count; i++)
+            {
+                Ability_Command command = LoadedCommands[i].Unwrap();
+                commandList.Add(command);
+            }
+
+            return Ability_Command.WriteList(commandList, HasExtraInfo());
         }
 
         public string GetFilePath()

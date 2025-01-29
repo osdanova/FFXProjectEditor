@@ -191,6 +191,7 @@
 				<TextBox VerticalAlignment="Center" Width="200" Text="{Binding FilterText}" TextChanged="Filter_Changed"/>
 			</StackPanel>
 			<StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+				<Button Click="Button_LoadIngame" Margin="0,0,30,0" IsEnabled="{Binding ProcService.IsAlive}">Load Ingame</Button>
 				<Button Click="Button_Save" Margin="0,0,30,0">Save</Button>
 			</StackPanel>
 		</Grid>

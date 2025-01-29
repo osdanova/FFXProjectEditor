@@ -32,7 +32,7 @@
 			<!-- Game Hook info -->
 			<StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" IsVisible="True">
 				<Label VerticalAlignment="Center">Hook</Label>
-				<CheckBox IsChecked="{Binding ProcService.IsAlive}"/>
+				<CheckBox IsChecked="{Binding ProcService.IsAlive}" IsEnabled="False"/>
 			</StackPanel>
 		</Grid>
 
