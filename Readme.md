@@ -9,7 +9,7 @@ Download the executable from the [Releases](https://github.com/osdanova/FFXProje
 * Windows: win-x64
 * Linux: linux-x64
 
-Extract the game files using an extractor such as (VBF Browser)[https://www.nexusmods.com/finalfantasy12/mods/3].
+Extract the game files using an extractor such as [VBF Browser](https://www.nexusmods.com/finalfantasy12/mods/3).
 
 The folder that the app uses (Needs to be loaded) is ffx_ps2/ffx/master. Inside this folder there are folders containing data for every region. Currently this tool only supports US (Both new_uspc and jppc are needed)
 
