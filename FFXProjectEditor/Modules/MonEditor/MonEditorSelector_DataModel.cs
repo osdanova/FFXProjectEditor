@@ -21,12 +21,12 @@ namespace FFXProjectEditor.Modules.MonEditor
 
         string FilterText { get; set; } = "";
 
-        [ObservableProperty] public bool infoExpanded = true;
+        [ObservableProperty] public bool infoExpanded = false;
         [ObservableProperty] public bool statsExpanded = true;
         [ObservableProperty] public bool propertiesExpanded = true;
         [ObservableProperty] public bool elementalWeaknessesExpanded = true;
         [ObservableProperty] public bool statusExpanded = true;
-        [ObservableProperty] public bool menuAbilitiesExpanded = true;
+        [ObservableProperty] public bool menuAbilitiesExpanded = false;
         [ObservableProperty] public bool identifiersExpanded = true;
 
         [ObservableProperty] public bool lootStatsExpanded = true;
@@ -83,7 +83,6 @@ namespace FFXProjectEditor.Modules.MonEditor
 
             byte[] byteFile = File.ReadAllBytes(monsterPath);
 
-            //contentFrame.Content = new Mon_Control(Monster_File.Read(byteFile), monsterPath);
             contentFrame.Content = new MonEditor_Control(Monster_File.Read(byteFile), monsterPath, this);
         }
 

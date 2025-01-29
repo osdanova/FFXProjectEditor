@@ -15,9 +15,9 @@
 	<DockPanel>
 
 		<!-- Bottom bar -->
-		<StackPanel DockPanel.Dock="Bottom">
-			<Button Click="Button_Save" HorizontalAlignment="Right">Save</Button>
-		</StackPanel>
+		<ContentControl Height="50" DockPanel.Dock="Bottom">
+				<Button Margin="0 0 20 0" VerticalAlignment="Center" Click="Button_Save" BorderThickness="1" BorderBrush="AliceBlue" CornerRadius="5" HorizontalAlignment="Right">Save</Button>
+		</ContentControl>
 
 		<!-- Editor -->
 		<TabControl SelectedIndex="{Binding SelectorDM.SelectedTab}">

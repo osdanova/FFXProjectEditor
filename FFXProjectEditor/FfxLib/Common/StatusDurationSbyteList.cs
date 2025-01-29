@@ -2,25 +2,9 @@
 
 namespace FFXProjectEditor.FfxLib.Common
 {
-    public class StatsusSbyteList
+    public class StatusDurationSbyteList
     {
-        // 25 statuses
-
-        // Permanent
-        [Data] public sbyte Death { get; set; }
-        [Data] public sbyte Zombie { get; set; }
-        [Data] public sbyte Petrify { get; set; }
-        [Data] public sbyte Poison { get; set; }
-        [Data] public sbyte BreakPower { get; set; }
-        [Data] public sbyte BreakMagic { get; set; }
-        [Data] public sbyte BreakArmor { get; set; }
-        [Data] public sbyte BreakMental { get; set; }
-        [Data] public sbyte Confuse { get; set; }
-        [Data] public sbyte Berserk { get; set; }
-        [Data] public sbyte Provoke { get; set; }
-        [Data] public sbyte Threaten { get; set; }
-
-        // Temporal
+        // 13 statuses
         [Data] public sbyte Sleep { get; set; }
         [Data] public sbyte Silence { get; set; }
         [Data] public sbyte Darkness { get; set; }

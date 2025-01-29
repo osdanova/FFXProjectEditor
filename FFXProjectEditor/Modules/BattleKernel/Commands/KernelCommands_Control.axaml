@@ -2,11 +2,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:converters="clr-namespace:FFXProjectEditor.Converters"
+			 xmlns:local="clr-namespace:FFXProjectEditor.Modules.BattleKernel.Commands"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="FFXProjectEditor.KernelCommands_Control">
+             x:Class="FFXProjectEditor.KernelCommands_Control"
+			 Name="ThisControl">
+
+	<UserControl.Resources>
+		<converters:Character_Converter x:Key="CharacterConverter"/>
+		<local:HitCalcType_Converter x:Key="HitCalcTypeConverter"/>
+	</UserControl.Resources>
 
 	<Grid RowDefinitions="30,*,50">
 		<StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0">
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowDescription}">Description</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowAnimations}">Animations</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowMenu}">Menu</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowCharacters}">Characters</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowProperties}">Properties</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowCosts}">Costs</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowAttackData}">Attack Data</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowElement}">Element</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowStatus}">Status</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowExtra}" IsEnabled="{Binding IsExtraEnabled}">Extra</CheckBox>
 		</StackPanel>
 		<!-- TABLE -->
 		<DataGrid Grid.Row="1" Margin="20" Name="DGrid"
@@ -17,24 +35,154 @@
 
 				<DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-				<DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
-				<DataGridTextColumn Header="DamageType" Binding="{Binding DamageType}"/>
-				<DataGridTextColumn Header="CostMp" Binding="{Binding CostMp}"/>
-				<DataGridTextColumn Header="CostOverdrive" Binding="{Binding CostOverdrive}"/>
-				<DataGridTextColumn Header="DamageFormula" Binding="{Binding DamageFormula}"/>
-				<DataGridTextColumn Header="AttackAccuracy" Binding="{Binding AttackAccuracy}"/>
-				<DataGridTextColumn Header="AttackPower" Binding="{Binding AttackPower}"/>
-				<DataGridTextColumn Header="HitCount" Binding="{Binding HitCount}"/>
-				<DataGridTextColumn Header="ElementFlags" Binding="{Binding ElementFlags}"/>
-				<DataGridTextColumn Header="CharacterUser" Binding="{Binding CharacterUser}"/>
-				<DataGridTextColumn Header="TargetingFlags" Binding="{Binding TargetingFlags}"/>
-				<DataGridTextColumn Header="TargetsAllowed" Binding="{Binding TargetsAllowed}"/>
-				<DataGridTextColumn Header="MenuProperties" Binding="{Binding MenuProperties}"/>
-				<DataGridTextColumn Header="SubSubMenuCategorization" Binding="{Binding SubSubMenuCategorization}"/>
-				<DataGridTextColumn Header="SubMenuCategorization" Binding="{Binding SubMenuCategorization}"/>
-				<DataGridTextColumn Header="OverdriveCategory" Binding="{Binding OverdriveCategory}"/>
-				<DataGridTextColumn Header="OrderingIndexInMenu" Binding="{Binding OrderingIndexInMenu}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowDescription}" Header="Description" Binding="{Binding Description}"/>
 
+				<DataGridTextColumn IsVisible="{Binding ShowAnimations}" Header="Anim 1 Id" Binding="{Binding Anim1Id}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAnimations}" Header="Anim 2 Id" Binding="{Binding Anim2Id}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAnimations}" Header="Icon Id" Binding="{Binding IconId}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAnimations}" Header="CasterAnimId" Binding="{Binding CasterAnimId}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowMenu}" Header="Menu - MainMenu" Binding="{Binding FlagMenuMainMenu}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowMenu}" Header="Menu - OpenCommandMenu" Binding="{Binding FlagMenuOpenCommandMenu}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowMenu}" Header="Menu - OpenSpecialMenu" Binding="{Binding FlagMenuOpenSpecialMenu}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowMenu}" Header="SubSubMenuCategorization" Binding="{Binding SubSubMenuCategorization}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowMenu}" Header="SubMenuCategorization" Binding="{Binding SubMenuCategorization}"/>
+
+				<DataGridTemplateColumn IsVisible="{Binding ShowCharacters}" Header="Character">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox HorizontalAlignment="Stretch"
+									  SelectedItem="{Binding CharacterUser, Converter={StaticResource CharacterConverter}, Mode=TwoWay}"
+                                      ItemsSource="{Binding #ThisControl.DataContext.CharacterOptions}"
+									  />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn IsVisible="{Binding ShowCharacters}" Width="5" Header="" Binding="{Binding CharacterUser, Converter={StaticResource CharacterConverter}}" IsReadOnly="True"/>
+
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - Enabled" Binding="{Binding FlagTargetEnabled}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - Enemies" Binding="{Binding FlagTargetEnemies}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - Multi" Binding="{Binding FlagTargetMulti}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - SelfOnly" Binding="{Binding FlagTargetSelfOnly}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - Unk10" Binding="{Binding FlagTargetUnk10}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - EitherTeam" Binding="{Binding FlagTargetEitherTeam}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - Dead" Binding="{Binding FlagTargetDead}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowCharacters}" Header="Target - LongRange" Binding="{Binding FlagTargetLongRange}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowCharacters}" Header="TargetsAllowed" Binding="{Binding TargetsAllowed}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Use Outside Combat" Binding="{Binding FlagMisc1UseOutsideCombat}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Use In Combat" Binding="{Binding FlagMisc1UseInCombat}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Display Move Name" Binding="{Binding FlagMisc1DisplayMoveName}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Affected By Darkness" Binding="{Binding FlagMisc1AffectedByDarkness}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Affected By Reflect" Binding="{Binding FlagMisc1AffectedByReflect}"/>
+
+				<DataGridTemplateColumn IsVisible="{Binding ShowProperties}" Header="Hit Calc Type">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox HorizontalAlignment="Stretch"
+									  SelectedItem="{Binding FlagMisc1HitCalcType, Converter={StaticResource HitCalcTypeConverter}, Mode=TwoWay}"
+                                      ItemsSource="{Binding #ThisControl.DataContext.HitCalcTypeOptions}"
+									  />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn IsVisible="{Binding ShowProperties}" Width="5" Header="" Binding="{Binding FlagMisc1HitCalcType, Converter={StaticResource HitCalcTypeConverter}}" IsReadOnly="True"/>
+
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Absorb Damage" Binding="{Binding FlagMisc2AbsorbDamage}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Steal Item" Binding="{Binding FlagMisc2StealItem}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Menu Use" Binding="{Binding FlagMisc2MenuUse}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Menu Right" Binding="{Binding FlagMisc2MenuRight}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Menu Left" Binding="{Binding FlagMisc2MenuLeft}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Delay S" Binding="{Binding FlagMisc2DelayS}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Delay L" Binding="{Binding FlagMisc2DelayL}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Random Targets" Binding="{Binding FlagMisc2RandomTargets}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Piercing" Binding="{Binding FlagMisc3Piercing}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Affected By Silence" Binding="{Binding FlagMisc3AffectedBySilence}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Use Weapon Props" Binding="{Binding FlagMisc3UseWeaponProps}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Trigger Command" Binding="{Binding FlagMisc3TriggerCommand}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Cast Anim S" Binding="{Binding FlagMisc3CastAnimS}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Cast Anim L" Binding="{Binding FlagMisc3CastAnimL}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Destroy Caster" Binding="{Binding FlagMisc3DestroyCaster}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Miss To Alive" Binding="{Binding FlagMisc3MissToAlive}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Charge Warrior/Healer OD" Binding="{Binding FlagMisc4ChargeWarriorHealer}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Empty Overdrive" Binding="{Binding FlagMisc4EmptyOverdrive}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Show Spellcast Aura" Binding="{Binding FlagMisc4ShowSpellcastAura}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Run Off-screen" Binding="{Binding FlagMisc4RunOffScreen}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Copycat Enabled" Binding="{Binding FlagMisc4CopycatEnabled}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Prop - Unk20" Binding="{Binding FlagMisc4Unk20}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Aeon Overdrive" Binding="{Binding FlagMisc4AeonOverdrive}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Bribe" Binding="{Binding FlagMisc4Bribe}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Damage - Physical" Binding="{Binding FlagDamagePhysical}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Damage - Magical" Binding="{Binding FlagDamageMagical}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Can Crit" Binding="{Binding FlagDamageCanCrit}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Gear Crit Bonus" Binding="{Binding FlagDamageGearCritBonus}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Heals" Binding="{Binding FlagDamageHeals}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Cleanses Statuses" Binding="{Binding FlagDamageCleansesStatuses}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Supress Break Damage Limit" Binding="{Binding FlagDamageSupressBreakDamageLimit}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Breaks Damage Limit" Binding="{Binding FlagDamageBreaksDamageLimit}"/>
+
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Steal Gil" Binding="{Binding StealGil}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Active" Binding="{Binding FlagPreviewActive}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Heal Mp" Binding="{Binding FlagPreviewHealMp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Heal Statuses" Binding="{Binding FlagPreviewHealStatuses}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Is Map" Binding="{Binding FlagPreviewIsMap}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Is Rename Card" Binding="{Binding FlagPreviewIsRenameCard}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Is Sphere" Binding="{Binding FlagPreviewIsSphere}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Heal Hp" Binding="{Binding FlagPreviewHealHp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Preview - Is Rename Card 2" Binding="{Binding FlagPreviewIsRenameCard2}"/>
+				
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Dmg type - Hp" Binding="{Binding FlagDamageTypeHp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Dmg type - Mp" Binding="{Binding FlagDamageTypeMp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowProperties}" Header="Dmg type - Ctb" Binding="{Binding FlagDamageTypeCtb}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowCosts}" Header="Move Rank" Binding="{Binding MoveRank}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowCosts}" Header="Cost Mp" Binding="{Binding CostMp}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowCosts}" Header="Cost Overdrive" Binding="{Binding CostOverdrive}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Attack Crit Bonus" Binding="{Binding AttackCritBonus}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Damage Formula" Binding="{Binding DamageFormula}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Attack Accuracy" Binding="{Binding AttackAccuracy}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Attack Power" Binding="{Binding AttackPower}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Hit Count" Binding="{Binding HitCount}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Shatter Chance" Binding="{Binding ShatterChance}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowElement}" Header="Element - Fire" Binding="{Binding FlagElementFire}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowElement}" Header="Element - Blizzard" Binding="{Binding FlagElementBlizzard}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowElement}" Header="Element - Thunder" Binding="{Binding FlagElementThunder}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowElement}" Header="Element - Water" Binding="{Binding FlagElementWater}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowElement}" Header="Element - Holy" Binding="{Binding FlagElementHoly}"/>
+
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Scan" Binding="{Binding FlagStatusScan}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Power" Binding="{Binding FlagStatusDistillPower}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Mana" Binding="{Binding FlagStatusDistillMana}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Speed" Binding="{Binding FlagStatusDistillSpeed}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Unused" Binding="{Binding FlagStatusDistillUnused}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Ability" Binding="{Binding FlagStatusDistillAbility}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Shield" Binding="{Binding FlagStatusShield}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Boost" Binding="{Binding FlagStatusBoost}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Eject" Binding="{Binding FlagStatusEject}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="AutoLife" Binding="{Binding FlagStatusAutoLife}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Curse" Binding="{Binding FlagStatusCurse}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Defend" Binding="{Binding FlagStatusDefend}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Guard" Binding="{Binding FlagStatusGuard}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Sentinel" Binding="{Binding FlagStatusSentinel}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Doom" Binding="{Binding FlagStatusDoom}"/>
+
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Cheer" Binding="{Binding FlagStatBuffCheer}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Aim" Binding="{Binding FlagStatBuffAim}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Focus" Binding="{Binding FlagStatBuffFocus}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Reflex" Binding="{Binding FlagStatBuffReflex}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Luck" Binding="{Binding FlagStatBuffLuck}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Jinx" Binding="{Binding FlagStatBuffJinx}"/>
+				
+				<DataGridTextColumn IsVisible="{Binding ShowProperties}" Header="Overdrive Category" Binding="{Binding OverdriveCategory}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowBuffs}" Header="Stat Buff Value" Binding="{Binding StatBuffValue}"/>
+
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Double Hp" Binding="{Binding FlagSpecialBuffDoubleHp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Double Mp" Binding="{Binding FlagSpecialBuffDoubleMp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Mp Cost 0" Binding="{Binding FlagSpecialBuffMpCost0}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Quartet" Binding="{Binding FlagSpecialBuffQuartet}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Always Crit" Binding="{Binding FlagSpecialBuffAlwaysCrit}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Overdrive 150%" Binding="{Binding FlagSpecialBuffOverdrive150}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Overdrive 200%" Binding="{Binding FlagSpecialBuffOverdrive200}"/>
+				
+				<DataGridTextColumn IsVisible="{Binding ShowExtra}" Header="OrderingIndexInMenu" Binding="{Binding ExtraInfo.OrderingIndexInMenu}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowExtra}" Header="SphereTypeForSphereGrid" Binding="{Binding ExtraInfo.SphereTypeForSphereGrid}"/>
 			</DataGrid.Columns>
 
 		</DataGrid>

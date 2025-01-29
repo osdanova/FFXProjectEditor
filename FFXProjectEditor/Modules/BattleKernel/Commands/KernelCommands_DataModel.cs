@@ -1,12 +1,15 @@
-﻿using FFXProjectEditor.FfxLib.Ability;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FFXProjectEditor.Converters;
+using FFXProjectEditor.FfxLib.Ability;
 using FFXProjectEditor.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 
 namespace FFXProjectEditor.Modules.BattleKernel.Commands
 {
-    internal class KernelCommands_DataModel
+    internal partial class KernelCommands_DataModel : ObservableObject
     {
         /******************************************
          * Data
@@ -16,6 +19,25 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
         List<KernelCommands_Wrapper> LoadedCommands { get; set; }
         ObservableCollection<KernelCommands_Wrapper> DisplayedCommands { get; set; }
 
+        /******************************************
+         * View settings
+         ******************************************/
+        [ObservableProperty] public bool showDescription = true;
+        [ObservableProperty] public bool showAnimations = false;
+        [ObservableProperty] public bool showMenu = false;
+        [ObservableProperty] public bool showCharacters = false;
+        [ObservableProperty] public bool showProperties = true;
+        [ObservableProperty] public bool showCosts = false;
+        [ObservableProperty] public bool showAttackData = false;
+        [ObservableProperty] public bool showElement = false;
+        [ObservableProperty] public bool showStatus = false;
+        [ObservableProperty] public bool showBuffs = false;
+        [ObservableProperty] public bool showExtra = false;
+
+        public List<string> CharacterOptions => new Character_Converter().Options.Values.ToList();
+        public List<string> HitCalcTypeOptions => new HitCalcType_Converter().Options.Values.ToList();
+
+        bool IsExtraEnabled => HasExtraInfo();
         string FilterText { get; set; } = "";
 
         public KernelCommands_DataModel(CommandFile_enum commandFileType)
@@ -65,7 +87,7 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
                 commandList.Add(command);
             }
 
-            File.WriteAllBytes(Project_Service.Instance.Path_KernelCommandUs, Ability_Command.WriteList(commandList, HasExtraInfo()));
+            File.WriteAllBytes(GetFilePath(), Ability_Command.WriteList(commandList, HasExtraInfo()));
         }
 
         public string GetFilePath()

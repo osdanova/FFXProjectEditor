@@ -21,7 +21,6 @@ namespace FFXProjectEditor.Modules.MonEditor
         [ObservableProperty] public byte evasion;
         [ObservableProperty] public byte accuracy;
 
-        //[ObservableProperty] public short propertyFlags;
         [ObservableProperty] public bool prop_Armored;
         [ObservableProperty] public bool prop_ImmunityFractionalDamage;
         [ObservableProperty] public bool prop_ImmunityLife;
@@ -40,7 +39,7 @@ namespace FFXProjectEditor.Modules.MonEditor
         [ObservableProperty] public ElementalWeaknessData elementalWeakness;
 
         // Status
-        [ObservableProperty] public StatsusSbyteList statusResistance;
+        [ObservableProperty] public StatusSbyteList statusResistance;
 
         [ObservableProperty] public bool auto_Death;
         [ObservableProperty] public bool auto_Zombie;

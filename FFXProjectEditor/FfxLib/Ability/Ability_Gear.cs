@@ -8,9 +8,9 @@ namespace FFXProjectEditor.FfxLib.Ability
         [Data] public byte SosFlag { get; set; }
         [Data] public byte ElementalStrike { get; set; }
         [Data] public ElementalWeaknessData ElementalWeakness { get; set; }
-        [Data] public StatsusSbyteList StatusChance { get; set; }
-        [Data] public StatsusDurationSbyteList StatusDuration { get; set; }
-        [Data] public StatsusSbyteList StatusResistChance { get; set; }
+        [Data] public StatusSbyteList StatusChance { get; set; }
+        [Data] public StatusDurationSbyteList StatusDuration { get; set; }
+        [Data] public StatusSbyteList StatusResistChance { get; set; }
         [Data] public byte StatIncreaseAmount { get; set; }
         [Data] public byte Unk56 { get; set; }
         [Data] public byte StatIncreaseFlags { get; set; }
