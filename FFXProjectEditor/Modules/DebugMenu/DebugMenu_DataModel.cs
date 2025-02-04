@@ -1,36 +1,40 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using FFXProjectEditor.FfxLib.Common;
+using FFXProjectEditor.FfxLib.Memory;
 using FFXProjectEditor.Services;
+using System.IO;
+using Xe.BinaryMapper;
 
 namespace FFXProjectEditor.Modules.DebugMenu
 {
     internal partial class DebugMenu_DataModel : ObservableObject
     {
-        [ObservableProperty] public bool isControlEnabled;
         public Process_Service ProcService { get => Process_Service.Instance; }
+        public MemoryBtl.BtlDebug LoadedBtlDebug { get; set; }
 
         public DebugMenu_DataModel()
         {
-            CheckValues();
+            LoadBtlDebug();
         }
 
-        private void CheckValues()
+        public void LoadBtlDebug()
         {
-            bool tess = MemSharp_Service.Instance.Read<byte>(MemoryMap_Util.ADDR_ENEMY_CONTROL) == 1 ? true : false;
-            IsControlEnabled = tess;
+            byte[] btlDebugBytes = ReadBtlDebug();
+            using (MemoryStream stream = new MemoryStream(btlDebugBytes))
+                LoadedBtlDebug = BinaryMapping.ReadObject<MemoryBtl.BtlDebug>(stream);
         }
 
-        public void EnableControl(bool doEnable)
+        public byte[] ReadBtlDebug()
         {
-            if (doEnable)
+            return MemSharp_Service.Instance.Read<byte>(MemoryMap.ADDR_BTL_DEBUG_SETTINGS, 0x28);
+        }
+
+        public void WriteBtlDebug()
+        {
+            using (MemoryStream stream = new MemoryStream())
             {
-                MemSharp_Service.Instance.Write<byte>(MemoryMap_Util.ADDR_ENEMY_CONTROL, 1);
+                BinaryMapping.WriteObject(stream, LoadedBtlDebug);
+                MemSharp_Service.Instance.Write(MemoryMap.ADDR_BTL_DEBUG_SETTINGS, stream.ToArray());
             }
-            else
-            {
-                MemSharp_Service.Instance.Write<byte>(MemoryMap_Util.ADDR_ENEMY_CONTROL, 0);
-            }
-            CheckValues();
         }
     }
 }

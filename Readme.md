@@ -49,6 +49,18 @@ All of these files share their structure.
 
 Tools to play around with the game.
 
+### Debug Menu
+
+A configuration menu with debug options.
+
+<img src="ReadmeAssets/DebugMenu.png" width="700"/>
+
+### Battle Tracker
+
+A Menu to see and modify ally and enemy data. Note that the autorefresh can be enabled but editing and loading data is disabled while it is autorefreshing.
+
+<img src="ReadmeAssets/BattleTracker.png" width="700"/>
+
 ## Made with
 
 * .Net

@@ -859,10 +859,12 @@ namespace FFXProjectEditor.FfxLib.Ability
                     }
                 }
 
-                listFile = stream.ToArray().ToArray();
+                listFile = stream.ToArray();
             }
 
-            return EntryListFile.Pack(0x60, (short)commandList.Count, listFile, textFile);
+            short entrySize = (short) (hasExtraInfo ? 0x60 : 0x5C);
+
+            return EntryListFile.Pack(entrySize, (short)commandList.Count, listFile, textFile);
         }
     }
 }

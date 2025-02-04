@@ -12,13 +12,15 @@
 		<Menu DockPanel.Dock="Top">
 			<MenuItem Header="Monster Editor" Click="MenuItem_MonsterEditor" IsEnabled="{Binding ProjService.IsProjectLoaded}"></MenuItem>
 			<MenuItem Header="Battle" IsEnabled="{Binding ProjService.IsProjectLoaded}">
-				<MenuItem Header="Items" Click="MenuItem_Items"></MenuItem>
-				<MenuItem Header="Commands" Click="MenuItem_Commands"></MenuItem>
-				<MenuItem Header="Monster Commands 1" Click="MenuItem_MonsterMagic1"></MenuItem>
-				<MenuItem Header="Monster Commands 2" Click="MenuItem_MonsterMagic2"></MenuItem>
+				<MenuItem Header="Items" Click="MenuItem_Items" />
+				<MenuItem Header="Commands" Click="MenuItem_Commands" />
+				<MenuItem Header="Monster Commands 1" Click="MenuItem_MonsterMagic1" />
+				<MenuItem Header="Monster Commands 2" Click="MenuItem_MonsterMagic2" />
 			</MenuItem>
-			<MenuItem Header="Tools" IsEnabled="{Binding ProcService.IsAlive}">
-				<MenuItem Header="Debug Menu" Click="MenuItem_DebugMenu"></MenuItem>
+			<MenuItem Header="Tools">
+				<MenuItem Header="Debug Menu" Click="MenuItem_DebugMenu" IsEnabled="{Binding ProcService.IsAlive}" />
+				<MenuItem Header="Battle Tracker" Click="MenuItem_BattleTracker" IsEnabled="{Binding ProcService.IsAlive}" />
+				<MenuItem Header="TEST" Click="MenuItem_Test" IsVisible="False"></MenuItem>
 			</MenuItem>
 		</Menu>
 

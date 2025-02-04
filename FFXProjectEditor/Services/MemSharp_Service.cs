@@ -49,11 +49,11 @@ namespace FFXProjectEditor.Services
             if (!IsAvailable()) return default(T[]);
             return MemSharp.Read<T>((IntPtr)offset, count, isRelative);
         }
-        public string ReadString(int offset, Encoding? enc = null, bool isRelative = true, int maxLength = 512)
+        public string ReadString(int offset, int strLength = 512, Encoding? enc = null, bool isRelative = true)
         {
             if (!IsAvailable()) return "";
             if (enc == null) enc = _defaultEncoding;
-            return MemSharp.ReadString((IntPtr)offset, enc, isRelative, maxLength);
+            return MemSharp.ReadString((IntPtr)offset, enc, isRelative, strLength);
         }
 
         public void Write(int offset, byte[] value, bool isRelative = true)

@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using FFXProjectEditor.Converters;
 using FFXProjectEditor.FfxLib.Ability;
-using FFXProjectEditor.FfxLib.Common;
+using FFXProjectEditor.FfxLib.Memory;
 using FFXProjectEditor.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -96,19 +96,19 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
             int fileAddress;
             if (CommandFileType == CommandFile_enum.Item)
             {
-                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_ITEM);
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap.POINTER_FILE_ITEM);
             }
             else if (CommandFileType == CommandFile_enum.Command)
             {
-                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_COMMAND);
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap.POINTER_FILE_COMMAND);
             }
             else if (CommandFileType == CommandFile_enum.MonMagic1)
             {
-                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_MONMAGIC1);
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap.POINTER_FILE_MONMAGIC1);
             }
             else if (CommandFileType == CommandFile_enum.MonMagic2)
             {
-                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap_Util.POINTER_FILE_MONMAGIC2);
+                fileAddress = MemSharp_Service.Instance.Read<int>(MemoryMap.POINTER_FILE_MONMAGIC2);
             }
             else return;
 
@@ -124,7 +124,9 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
                 commandList.Add(command);
             }
 
-            return Ability_Command.WriteList(commandList, HasExtraInfo());
+            bool hasExtraInfo = HasExtraInfo();
+
+            return Ability_Command.WriteList(commandList, hasExtraInfo);
         }
 
         public string GetFilePath()

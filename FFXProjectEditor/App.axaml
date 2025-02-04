@@ -5,8 +5,15 @@
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
 
     <Application.Styles>
+		
         <FluentTheme />
 		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+
+		<Style Selector="ToggleSwitch">
+			<Setter Property="OnContent" Value=""/>
+			<Setter Property="OffContent" Value=""/>
+		</Style>
+		
     </Application.Styles>
 
 	<Application.Resources>

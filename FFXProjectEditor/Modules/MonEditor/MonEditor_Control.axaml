@@ -360,11 +360,17 @@
 						<Expander Header="Gear" IsExpanded="{Binding SelectorDM.LootGearExpanded}" HorizontalAlignment="Stretch">
 							<StackPanel>
 								<WrapPanel>
-									<local:Property_Template Margin="5" Property_Label="Gear Slot Count" Property_Value="{Binding MonsterLoot.GearSlotCount}" BorderWidth="200" ValueBorderWidth="50"/>
 									<local:Property_Template Margin="5" Property_Label="Gear Formula" Property_Value="{Binding MonsterLoot.GearFormula}" BorderWidth="200" ValueBorderWidth="50"/>
 									<local:Property_Template Margin="5" Property_Label="Gear Crit" Property_Value="{Binding MonsterLoot.GearCrit}" BorderWidth="200" ValueBorderWidth="50"/>
 									<local:Property_Template Margin="5" Property_Label="Gear Attack" Property_Value="{Binding MonsterLoot.GearAttack}" BorderWidth="200" ValueBorderWidth="50"/>
+								</WrapPanel>
+								<WrapPanel>
+									<local:Property_Template Margin="5" Property_Label="Gear Slot Count" Property_Value="{Binding MonsterLoot.GearSlotCount}" BorderWidth="200" ValueBorderWidth="50"/>
+									<Label VerticalAlignment="Center" Content="{Binding MonsterLoot.NoticeSlots}" />
+								</WrapPanel>
+								<WrapPanel>
 									<local:Property_Template Margin="5" Property_Label="Gear Ability Count" Property_Value="{Binding MonsterLoot.GearAbilityCount}" BorderWidth="220" ValueBorderWidth="50"/>
+									<Label VerticalAlignment="Center" Content="{Binding MonsterLoot.NoticeAbis}" />
 								</WrapPanel>
 
 								<Border Margin="5" Padding="5" BorderThickness="1" BorderBrush="AliceBlue" CornerRadius="5">

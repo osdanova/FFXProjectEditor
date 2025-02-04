@@ -1,0 +1,67 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:local="clr-namespace:FFXProjectEditor.Modules.BattleTracker"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.BattleTracker_Control">
+
+	<UserControl.Resources>
+		<local:BattleTrackerAliveColor_Converter x:Key="BattleTrackerAliveColorConverter"/>
+	</UserControl.Resources>
+	
+	<DockPanel>
+		<DockPanel Height="50" DockPanel.Dock="Top">
+			<StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+				<Button Click="Button_Read" IsEnabled="{Binding AutoRefreshDisabled}">Refresh</Button>
+				<Label Margin="10,0,0,0" VerticalAlignment="Center">Auto-Refresh</Label>
+				<CheckBox IsChecked="{Binding AutoRefreshEnabled}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+				<CheckBox IsChecked="{Binding InBattle}" IsEnabled="False" ></CheckBox>
+				<Label VerticalAlignment="Center">Battle</Label>
+				<TextBox Height="30" Text="{Binding BattleIndex}" MinWidth="40" IsEnabled="False" VerticalContentAlignment="Center" />
+				<Label VerticalAlignment="Center">File</Label>
+				<TextBox Height="30" Text="{Binding BattleName}" Width="200" IsEnabled="False" VerticalContentAlignment="Center" />
+			</StackPanel>
+		</DockPanel>
+
+		<DockPanel Height="50" DockPanel.Dock="Bottom">
+			<Button Margin="0,0,10,0" HorizontalAlignment="Right" IsEnabled="{Binding LoadEnabled}" Click="Button_LoadIngame">Load Ingame</Button>
+		</DockPanel>
+		
+		<Grid ColumnDefinitions="*,*">
+			
+			<!-- Players -->
+			<Grid Grid.Column="0" ColumnDefinitions="150, *">
+				<ListBox Grid.Column="0" Name="ListBox_Ally" ItemsSource="{Binding DisplayAllyList}" SelectionMode="Single" SelectionChanged="ListBox_SelectionChangedAlly">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Label Content="{Binding DisplayName}" Foreground="{Binding InBattle, Converter={StaticResource BattleTrackerAliveColorConverter}}"/>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+				<ScrollViewer Grid.Column="1">
+					<ContentControl Name="FrameAlly" IsEnabled="{Binding AutoRefreshDisabled}" />
+				</ScrollViewer>
+			</Grid>
+			
+			<!-- Enemies -->
+			<Grid Grid.Column="1" ColumnDefinitions="300, *">
+				<ListBox Grid.Column="0" Name="ListBox_Enemy" ItemsSource="{Binding DisplayEnemyList}" SelectionMode="Single" SelectionChanged="ListBox_SelectionChangedEnemy">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<DockPanel>
+								<Label Content="{Binding DisplayName}" Foreground="{Binding InBattle, Converter={StaticResource BattleTrackerAliveColorConverter}}"/>
+							</DockPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+				<ScrollViewer Grid.Column="1">
+					<ContentControl Name="FrameEnemy" IsEnabled="{Binding AutoRefreshDisabled}" />
+				</ScrollViewer>
+			</Grid>
+			
+		</Grid>
+	</DockPanel>
+</UserControl>

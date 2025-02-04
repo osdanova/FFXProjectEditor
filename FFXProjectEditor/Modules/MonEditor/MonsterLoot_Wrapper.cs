@@ -45,11 +45,11 @@ namespace FFXProjectEditor.Modules.MonEditor
         [ObservableProperty] public byte bribeCount;
 
         // Gear
-        [ObservableProperty] public byte gearSlotCount;
+        [ObservableProperty][NotifyPropertyChangedFor(nameof(NoticeSlots))] public byte gearSlotCount;
         [ObservableProperty] public byte gearFormula;
         [ObservableProperty] public byte gearCrit;
         [ObservableProperty] public byte gearAttack;
-        [ObservableProperty] public byte gearAbilityCount;
+        [ObservableProperty][NotifyPropertyChangedFor(nameof(NoticeAbis))] public byte gearAbilityCount;
 
         [ObservableProperty] public GameIndex_Wrapper[] tidusWeapons;
         [ObservableProperty] public GameIndex_Wrapper[] tidusArmors;
@@ -71,6 +71,9 @@ namespace FFXProjectEditor.Modules.MonEditor
         [ObservableProperty] public byte unk1;
         [ObservableProperty] public byte unk2;
         [ObservableProperty] public byte unk3;
+
+        public string NoticeSlots => "Slots: ["+ GetRandomSlotsMin(GearSlotCount) +"] - [" + GetRandomSlotsMax(GearSlotCount) +"]";
+        public string NoticeAbis => "Slots: ["+ GetRandomAbiMin(GearAbilityCount) +"] - [" + GetRandomAbiMax(GearAbilityCount) +"]";
 
         public static MonsterLoot_Wrapper Wrap(Monster_Loot loot)
         {
@@ -231,6 +234,16 @@ namespace FFXProjectEditor.Modules.MonEditor
             }
 
             return gearAbilities;
+        }
+
+        private static float GetRandomSlotsMin(byte value) => GetRandomValue(value, -4, 4);
+        private static float GetRandomSlotsMax(byte value) => GetRandomValue(value, 3, 4);
+        private static float GetRandomAbiMin(byte value) => GetRandomValue(value, -4, 8);
+        private static float GetRandomAbiMax(byte value) => GetRandomValue(value, 3, 8);
+        private static float GetRandomValue(byte value, int variance, int divisor)
+        {
+            float result = (float)(value + variance) / (float)divisor;
+            return result;
         }
     }
 }

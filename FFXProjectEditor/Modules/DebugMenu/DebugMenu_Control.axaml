@@ -4,12 +4,84 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="FFXProjectEditor.DebugMenu_Control">
-
+	
 	<Border Padding="10">
 		<StackPanel>
-			<StackPanel Orientation="Horizontal">
-				<ToggleSwitch Checked="Toggle_ControlOn" Unchecked="Toggle_ControlOff">Control Enemies</ToggleSwitch>
-			</StackPanel>
+			<WrapPanel HorizontalAlignment="Left">
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Invincible Enemies</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_invincible_mon}" />
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Invincible Allies</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_invincible_ply}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Control Enemies</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_mon_control}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Free Camera</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_free_camera}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">No Magic Effects</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_no_magic_effects}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">No MP Cost</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_no_mp_cost}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">No Variance</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_no_variance}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Never Crit</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_never_crit}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Always Hit</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_always_hit}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">OD Always Available</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_always_available_overdrive}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Always Crit</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_always_crit}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Always 1 dmg</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_always_1_dmg}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Always 9999 dmg</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_always_9999_dmg}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Always 99999 dmg</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_always_99999_dmg}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Always Rare Steal</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_always_rare_steal}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Never Overkill</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_never_overkill}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Never Charge Overdrive</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_never_charge_overdrive}"/>
+				</DockPanel>
+				<DockPanel Width="250">
+					<Label HorizontalAlignment="Left" VerticalAlignment="Center">Never Hit</Label>
+					<ToggleSwitch HorizontalAlignment="Right" IsChecked="{Binding LoadedBtlDebug.debug_never_hit}"/>
+				</DockPanel>
+			</WrapPanel>
+			<Button Click="Button_Apply">Apply</Button>
 		</StackPanel>
 	</Border>
 	

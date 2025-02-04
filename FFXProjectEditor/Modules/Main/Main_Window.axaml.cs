@@ -90,4 +90,12 @@ public partial class Main_Window : Window
     {
         ContentFrame.Content = new DebugMenu_Control();
     }
+    private void MenuItem_BattleTracker(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        ContentFrame.Content = new BattleTracker_Control();
+    }
+    private void MenuItem_Test(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        ContentFrame.Content = new Test_Control();
+    }
 }

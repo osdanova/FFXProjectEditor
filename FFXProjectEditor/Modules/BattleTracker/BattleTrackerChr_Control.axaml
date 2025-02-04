@@ -1,0 +1,165 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:localProject="clr-namespace:FFXProjectEditor"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.BattleTrackerChr_Control">
+
+	<StackPanel Margin="5">
+		<WrapPanel>
+			<StackPanel Width="300" Orientation="Horizontal">
+				<Label>HP</Label>
+				<TextBox Text="{Binding Hp}" />
+				<Label>/</Label>
+				<TextBox Text="{Binding Max_hp}" />
+			</StackPanel>
+			<StackPanel Width="300" Margin="10,0,0,0" Orientation="Horizontal">
+				<Label>MP</Label>
+				<TextBox Text="{Binding Mp}" />
+				<Label>/</Label>
+				<TextBox Text="{Binding Max_mp}" />
+			</StackPanel>
+		</WrapPanel>
+		<WrapPanel Margin="0,10,0,0">
+			<StackPanel Width="300" Orientation="Horizontal">
+				<Label>Overdrive</Label>
+				<TextBox Text="{Binding Ovr_charge}" />
+				<Label>/</Label>
+				<TextBox Text="{Binding Ovr_charge_max}" />
+			</StackPanel>
+			<StackPanel Width="300" Margin="10,0,0,0" Orientation="Horizontal">
+				<Label>CTB</Label>
+				<TextBox Text="{Binding Ctb}" />
+				<Label>/</Label>
+				<TextBox Text="{Binding Max_ctb}" />
+			</StackPanel>
+		</WrapPanel>
+
+		<WrapPanel Margin="0,10,0,0">
+			<StackPanel Orientation="Horizontal">
+				<Label VerticalAlignment="Center">Flying</Label>
+				<CheckBox IsChecked="{Binding Flying}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal">
+				<Label Margin="5,0,0,0" VerticalAlignment="Center">Far</Label>
+				<TextBox Text="{Binding Stat_far}" MinWidth="30" />
+			</StackPanel>
+		</WrapPanel>
+
+		<Label>Stats</Label>
+		<Separator />
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Strength" Property_Value="{Binding Strength}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Defense" Property_Value="{Binding Defense}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Magic" Property_Value="{Binding Magic}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Magic Defense" Property_Value="{Binding Magic_defense}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Agility" Property_Value="{Binding Agility}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Luck" Property_Value="{Binding Luck}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Evasion" Property_Value="{Binding Evasion}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Accuracy" Property_Value="{Binding Accuracy}" />
+		</WrapPanel>
+		<Label>Stat ups</Label>
+		<Separator />
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Strength Up" Property_Value="{Binding Strength_up}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Defense Up" Property_Value="{Binding Defense_up}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Magic Up" Property_Value="{Binding Magic_up}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Magic Defense Up" Property_Value="{Binding Magic_defense_up}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Agility Up" Property_Value="{Binding Agility_up}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Luck Up" Property_Value="{Binding Luck_up}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Evasion Up" Property_Value="{Binding Evasion_up}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Accuracy Up" Property_Value="{Binding Accuracy_up}" />
+		</WrapPanel>
+		<Label>Buffs</Label>
+		<Separator/>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Cheer Stacks" Property_Value="{Binding Cheer_stacks}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Aim Stacks" Property_Value="{Binding Aim_stacks}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Focus Stacks" Property_Value="{Binding Focus_stacks}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Reflex Stacks" Property_Value="{Binding Reflex_stacks}" />
+		</WrapPanel>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Luck Stacks" Property_Value="{Binding Luck_stacks}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Jinx Stacks" Property_Value="{Binding Jinx_stacks}" />
+		</WrapPanel>
+		<Label>Others</Label>
+		<Separator />
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Steal Count" Property_Value="{Binding Steal_count}" />
+			<localProject:Property_Template Margin="5" BorderWidth="250" ValueBorderWidth="100" Property_Label="Bribe Gil Spent" Property_Value="{Binding Bribe_gil_spent}" />
+		</WrapPanel>
+
+		<Label>Statuses</Label>
+		<Separator Opacity="0.2"/>
+		<WrapPanel>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferKo}">Ko</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferZombie}">Zombie</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferPetrification}">Petrification</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferPoison}">Poison</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferBreakPower}">Break Power</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferBreakMagic}">Break Magic</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferBreakArmor}">Break Armor</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferBreakMental}">Break Mental</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferConfusion}">Confusion</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferBerserk}">Berserk</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferProvoke}">Provoke</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferThreaten}">Threaten</CheckBox>
+		</WrapPanel>
+		
+		<Label>Statuses - Turns Left</Label>
+		<Separator Opacity="0.2"/>
+		<WrapPanel>
+			<localProject:Property_Template Margin="5" Property_Label="Sleep" Property_Value="{Binding Status_suffer_turns_left.Sleep}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Silence" Property_Value="{Binding Status_suffer_turns_left.Silence}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Darkness" Property_Value="{Binding Status_suffer_turns_left.Darkness}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Shell" Property_Value="{Binding Status_suffer_turns_left.Shell}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Protect" Property_Value="{Binding Status_suffer_turns_left.Protect}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Reflect" Property_Value="{Binding Status_suffer_turns_left.Reflect}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="NulTide" Property_Value="{Binding Status_suffer_turns_left.NulTide}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="NulBlaze" Property_Value="{Binding Status_suffer_turns_left.NulBlaze}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="NulShock" Property_Value="{Binding Status_suffer_turns_left.NulShock}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="NulFrost" Property_Value="{Binding Status_suffer_turns_left.NulFrost}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Regen" Property_Value="{Binding Status_suffer_turns_left.Regen}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Haste" Property_Value="{Binding Status_suffer_turns_left.Haste}" BorderWidth="200" ValueBorderWidth="50"/>
+			<localProject:Property_Template Margin="5" Property_Label="Slow" Property_Value="{Binding Status_suffer_turns_left.Slow}" BorderWidth="200" ValueBorderWidth="50"/>
+		</WrapPanel>
+		
+		<Label>Statuses - Special</Label>
+		<Separator Opacity="0.2"/>
+		<WrapPanel>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraScan}">Scan</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraDistillPower}">Distill Power</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraDistillMana}">Distill Mana</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraDistillSpeed}">Distill Speed</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraDistillUnused}">Distill Unused</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraDistillAbility}">Distill Ability</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraShield}">Shield</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraBoost}">Boost</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraEject}">Eject</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraAutoLife}">AutoLife</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraCurse}">Curse</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraDefend}">Defend</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraGuard}">Guard</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraSentinel}">Sentinel</CheckBox>
+			<CheckBox Margin="5" Width="200" IsChecked="{Binding FlagStatusSufferExtraDoom}">Doom</CheckBox>
+		</WrapPanel>
+			
+	</StackPanel>
+	
+</UserControl>
