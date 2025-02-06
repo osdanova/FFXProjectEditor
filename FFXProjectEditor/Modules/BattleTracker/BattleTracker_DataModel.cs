@@ -31,7 +31,7 @@ namespace FFXProjectEditor.Modules.BattleTracker
         [ObservableProperty] public byte battleIndex;
 
         // Enemy and Ally lists
-        internal List<byte> AlliesInBattle = new();
+        internal List<sbyte> AlliesInBattle = new();
         internal List<MemoryChr> EnemyChrs = new();
         internal List<MemoryChr> AllyChrs = new();
         internal ObservableCollection<BattleTrackerChr_Wrapper> EnemyList { get; set; } = new();
@@ -175,7 +175,7 @@ namespace FFXProjectEditor.Modules.BattleTracker
 
             // Allies
             ReadAlliesInBattle();
-            foreach (byte allyId in AlliesInBattle)
+            foreach (sbyte allyId in AlliesInBattle)
             {
                 if(allyId != -1)
                 {
@@ -184,7 +184,7 @@ namespace FFXProjectEditor.Modules.BattleTracker
             }
             foreach (BattleTrackerChr_Wrapper thisWrapper in AllyList)
             {
-                if (!AlliesInBattle.Contains((byte)thisWrapper.Id))
+                if (!AlliesInBattle.Contains((sbyte)thisWrapper.Id))
                 {
                     DisplayAllyList.Add(thisWrapper);
                 }
@@ -206,7 +206,7 @@ namespace FFXProjectEditor.Modules.BattleTracker
         
             for(int i = 0; i < 3; i++)
             {
-                AlliesInBattle.Add(MemSharp_Service.Instance.Read<byte>(MemoryMap.ADDR_BATTLE_FORMATION_SLOTS + i));
+                AlliesInBattle.Add(MemSharp_Service.Instance.Read<sbyte>(MemoryMap.ADDR_BATTLE_FORMATION_SLOTS + i));
             }
         }
 
