@@ -24,6 +24,7 @@
 			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowAttackData}">Attack Data</CheckBox>
 			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowElement}">Element</CheckBox>
 			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowStatus}">Status</CheckBox>
+			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowStatusSpecial}">Status - Special</CheckBox>
 			<CheckBox Margin="10,0,0,0" IsChecked="{Binding ShowExtra}" IsEnabled="{Binding IsExtraEnabled}">Extra</CheckBox>
 		</StackPanel>
 		<!-- TABLE -->
@@ -147,39 +148,78 @@
 				<DataGridCheckBoxColumn IsVisible="{Binding ShowElement}" Header="Element - Water" Binding="{Binding FlagElementWater}"/>
 				<DataGridCheckBoxColumn IsVisible="{Binding ShowElement}" Header="Element - Holy" Binding="{Binding FlagElementHoly}"/>
 
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Scan" Binding="{Binding FlagStatusScan}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Power" Binding="{Binding FlagStatusDistillPower}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Mana" Binding="{Binding FlagStatusDistillMana}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Speed" Binding="{Binding FlagStatusDistillSpeed}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Unused" Binding="{Binding FlagStatusDistillUnused}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Distill Ability" Binding="{Binding FlagStatusDistillAbility}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Shield" Binding="{Binding FlagStatusShield}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Boost" Binding="{Binding FlagStatusBoost}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Eject" Binding="{Binding FlagStatusEject}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="AutoLife" Binding="{Binding FlagStatusAutoLife}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Curse" Binding="{Binding FlagStatusCurse}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Defend" Binding="{Binding FlagStatusDefend}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Guard" Binding="{Binding FlagStatusGuard}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Sentinel" Binding="{Binding FlagStatusSentinel}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Doom" Binding="{Binding FlagStatusDoom}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Death" Binding="{Binding StatusChance.Death}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Zombie" Binding="{Binding StatusChance.Zombie}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Petrify" Binding="{Binding StatusChance.Petrify}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Poison" Binding="{Binding StatusChance.Poison}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="BreakPower" Binding="{Binding StatusChance.BreakPower}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="BreakMagic" Binding="{Binding StatusChance.BreakMagic}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="BreakArmor" Binding="{Binding StatusChance.BreakArmor}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="BreakMental" Binding="{Binding StatusChance.BreakMental}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Confuse" Binding="{Binding StatusChance.Confuse}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Berserk" Binding="{Binding StatusChance.Berserk}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Provoke" Binding="{Binding StatusChance.Provoke}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Threaten" Binding="{Binding StatusChance.Threaten}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Sleep" Binding="{Binding StatusChance.Sleep}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="Turns" Binding="{Binding StatusDuration.Sleep}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Silence" Binding="{Binding StatusChance.Silence}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Silence}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Darkness" Binding="{Binding StatusChance.Darkness}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Darkness}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Shell" Binding="{Binding StatusChance.Shell}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Shell}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Protect" Binding="{Binding StatusChance.Protect}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Protect}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Reflect" Binding="{Binding StatusChance.Reflect}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Reflect}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="NulTide" Binding="{Binding StatusChance.NulTide}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.NulTide}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="NulBlaze" Binding="{Binding StatusChance.NulBlaze}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.NulBlaze}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="NulShock" Binding="{Binding StatusChance.NulShock}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.NulShock}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="NulFrost" Binding="{Binding StatusChance.NulFrost}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.NulFrost}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Regen" Binding="{Binding StatusChance.Regen}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Regen}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Haste" Binding="{Binding StatusChance.Haste}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Haste}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Header="Slow" Binding="{Binding StatusChance.Slow}"/>
+				<DataGridTextColumn IsVisible="{Binding ShowStatus}" Foreground="Gray" Header="" Binding="{Binding StatusDuration.Slow}"/>
+				
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Scan" Binding="{Binding FlagStatusScan}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Distill Power" Binding="{Binding FlagStatusDistillPower}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Distill Mana" Binding="{Binding FlagStatusDistillMana}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Distill Speed" Binding="{Binding FlagStatusDistillSpeed}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Distill Unused" Binding="{Binding FlagStatusDistillUnused}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Distill Ability" Binding="{Binding FlagStatusDistillAbility}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Shield" Binding="{Binding FlagStatusShield}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Boost" Binding="{Binding FlagStatusBoost}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Eject" Binding="{Binding FlagStatusEject}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="AutoLife" Binding="{Binding FlagStatusAutoLife}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Curse" Binding="{Binding FlagStatusCurse}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Defend" Binding="{Binding FlagStatusDefend}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Guard" Binding="{Binding FlagStatusGuard}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Sentinel" Binding="{Binding FlagStatusSentinel}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Doom" Binding="{Binding FlagStatusDoom}"/>
 
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Cheer" Binding="{Binding FlagStatBuffCheer}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Aim" Binding="{Binding FlagStatBuffAim}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Focus" Binding="{Binding FlagStatBuffFocus}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Reflex" Binding="{Binding FlagStatBuffReflex}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Luck" Binding="{Binding FlagStatBuffLuck}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Jinx" Binding="{Binding FlagStatBuffJinx}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Cheer" Binding="{Binding FlagStatBuffCheer}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Aim" Binding="{Binding FlagStatBuffAim}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Focus" Binding="{Binding FlagStatBuffFocus}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Reflex" Binding="{Binding FlagStatBuffReflex}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Luck" Binding="{Binding FlagStatBuffLuck}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Jinx" Binding="{Binding FlagStatBuffJinx}"/>
 				
 				<DataGridTextColumn IsVisible="{Binding ShowProperties}" Header="Overdrive Category" Binding="{Binding OverdriveCategory}"/>
 				<DataGridTextColumn IsVisible="{Binding ShowBuffs}" Header="Stat Buff Value" Binding="{Binding StatBuffValue}"/>
 
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Double Hp" Binding="{Binding FlagSpecialBuffDoubleHp}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Double Mp" Binding="{Binding FlagSpecialBuffDoubleMp}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Mp Cost 0" Binding="{Binding FlagSpecialBuffMpCost0}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Quartet" Binding="{Binding FlagSpecialBuffQuartet}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Always Crit" Binding="{Binding FlagSpecialBuffAlwaysCrit}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Overdrive 150%" Binding="{Binding FlagSpecialBuffOverdrive150}"/>
-				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatus}" Header="Overdrive 200%" Binding="{Binding FlagSpecialBuffOverdrive200}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Double Hp" Binding="{Binding FlagSpecialBuffDoubleHp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Double Mp" Binding="{Binding FlagSpecialBuffDoubleMp}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Mp Cost 0" Binding="{Binding FlagSpecialBuffMpCost0}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Quartet" Binding="{Binding FlagSpecialBuffQuartet}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Always Crit" Binding="{Binding FlagSpecialBuffAlwaysCrit}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Overdrive 150%" Binding="{Binding FlagSpecialBuffOverdrive150}"/>
+				<DataGridCheckBoxColumn IsVisible="{Binding ShowStatusSpecial}" Header="Overdrive 200%" Binding="{Binding FlagSpecialBuffOverdrive200}"/>
 				
 				<DataGridTextColumn IsVisible="{Binding ShowExtra}" Header="OrderingIndexInMenu" Binding="{Binding ExtraInfo.OrderingIndexInMenu}"/>
 				<DataGridTextColumn IsVisible="{Binding ShowExtra}" Header="SphereTypeForSphereGrid" Binding="{Binding ExtraInfo.SphereTypeForSphereGrid}"/>

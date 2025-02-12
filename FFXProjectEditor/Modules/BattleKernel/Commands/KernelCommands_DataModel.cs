@@ -33,6 +33,7 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
         [ObservableProperty] public bool showAttackData = false;
         [ObservableProperty] public bool showElement = false;
         [ObservableProperty] public bool showStatus = false;
+        [ObservableProperty] public bool showStatusSpecial = false;
         [ObservableProperty] public bool showBuffs = false;
         [ObservableProperty] public bool showExtra = false;
 
