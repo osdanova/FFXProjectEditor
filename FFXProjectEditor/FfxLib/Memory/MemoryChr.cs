@@ -126,11 +126,11 @@ namespace FFXProjectEditor.FfxLib.Memory
         [Data(0x5DB)] public       byte              Elem_ignore { get; set; }
         [Data(0x5DC)] public       byte              Elem_resist { get; set; }
         [Data(0x5DD)] public       byte              Elem_weak { get; set; }
-        [Data(0x5DE)] public       StatusSbyteList         Status_inflict { get; set; }
-        [Data(0x5F7)] public       StatusDurationSbyteList Status_duration_inflict { get; set; }
+        [Data(0x5DE)] public       StatusByteList         Status_inflict { get; set; }
+        [Data(0x5F7)] public       StatusDurationByteList Status_duration_inflict { get; set; }
         [Data(0x604)] public       ushort            Status_inflict_extra { get; set; }
         [Data(0x606)] public       StatusSufferFlags Status_suffer { get; set; }
-        [Data(0x608)] public       StatusDurationSbyteList Status_suffer_turns_left { get; set; }
+        [Data(0x608)] public       StatusDurationByteList Status_suffer_turns_left { get; set; }
         [Data(0x616)] public       StatusSufferExtraFlags Status_suffer_extra { get; set; }
         [Data(0x62A)] public       ushort            Status_full_auto_1 { get; set; }
         [Data(0x62C)] public       ushort            Status_full_auto_2 { get; set; }
@@ -143,7 +143,7 @@ namespace FFXProjectEditor.FfxLib.Memory
         [Data(0x63A)] public       ushort            Status_sos_auto_3 { get; set; }
         [Data(0x63D)] public       byte              Weak_level_full { get; set; }
         [Data(0x63E)] public       byte              Weak_level_hp { get; set; }
-        [Data(0x641)] public       StatusSbyteList   Status_resist { get; set; }
+        [Data(0x641)] public       StatusByteList   Status_resist { get; set; }
         [Data(0x65A)] public       ushort            Status_resist_extra { get; set; }
         [Data(0x65C)] public       byte              Ctb { get; set; }
         [Data(0x65D)] public       byte              Max_ctb { get; set; }

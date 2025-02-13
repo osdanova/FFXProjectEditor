@@ -39,7 +39,7 @@ namespace FFXProjectEditor.Modules.MonEditor
         [ObservableProperty] public ElementalWeaknessData elementalWeakness;
 
         // Status
-        [ObservableProperty] public StatusSbyteList statusResistance;
+        [ObservableProperty] public StatusByteList statusResistance;
 
         [ObservableProperty] public bool auto_Death;
         [ObservableProperty] public bool auto_Zombie;

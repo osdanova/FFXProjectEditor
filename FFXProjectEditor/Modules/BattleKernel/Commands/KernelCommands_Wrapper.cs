@@ -96,8 +96,8 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
         [ObservableProperty] public bool flagElementThunder;
         [ObservableProperty] public bool flagElementWater;
         [ObservableProperty] public bool flagElementHoly;
-        [ObservableProperty] public StatusSbyteList statusChance;
-        [ObservableProperty] public StatusDurationSbyteList statusDuration;
+        [ObservableProperty] public StatusByteList statusChance;
+        [ObservableProperty] public StatusDurationByteList statusDuration;
         [ObservableProperty] public bool flagStatusScan;
         [ObservableProperty] public bool flagStatusDistillPower;
         [ObservableProperty] public bool flagStatusDistillMana;

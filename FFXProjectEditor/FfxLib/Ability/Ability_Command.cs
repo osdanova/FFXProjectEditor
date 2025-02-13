@@ -47,8 +47,8 @@ namespace FFXProjectEditor.FfxLib.Ability
         [Data] public byte HitCount { get; set; }
         [Data] public byte ShatterChance { get; set; }
         [Data] public ElementFlags ElementFlgs { get; set; }
-        [Data] public StatusSbyteList StatusChance { get; set; }
-        [Data] public StatusDurationSbyteList StatusDuration { get; set; }
+        [Data] public StatusByteList StatusChance { get; set; }
+        [Data] public StatusDurationByteList StatusDuration { get; set; }
         [Data] public StatusFlags StatusFlgs { get; set; }
         [Data] public StatBuffFlags StatBuffFlgs { get; set; }
         [Data] public byte OverdriveCategory { get; set; }

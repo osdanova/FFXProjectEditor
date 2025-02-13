@@ -31,7 +31,7 @@ namespace FFXProjectEditor.FfxLib.Monster
         [Data] public ElementalWeaknessData ElementalWeakness { get; set; }
 
         // Status
-        [Data] public StatusSbyteList StatusResistance { get; set; }
+        [Data] public StatusByteList StatusResistance { get; set; }
 
         [Data] public AutoStatusFlags1 AutoStatus_Flags1 { get; set; }
         [Data] public AutoStatusFlags2 AutoStatus_Flags2 { get; set; }

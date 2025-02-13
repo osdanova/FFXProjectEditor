@@ -126,11 +126,11 @@ namespace FFXProjectEditor.Modules.BattleTracker
         [ObservableProperty] public byte elem_ignore;
         [ObservableProperty] public byte elem_resist;
         [ObservableProperty] public byte elem_weak;
-        [ObservableProperty] public StatusSbyteList status_inflict;
-        [ObservableProperty] public StatusDurationSbyteList status_duration_inflict;
+        [ObservableProperty] public StatusByteList status_inflict;
+        [ObservableProperty] public StatusDurationByteList status_duration_inflict;
         [ObservableProperty] public ushort status_inflict_extra;
         //[ObservableProperty] public ushort status_suffer;
-        [ObservableProperty] public StatusDurationSbyteList status_suffer_turns_left;
+        [ObservableProperty] public StatusDurationByteList status_suffer_turns_left;
         //[ObservableProperty] public ushort status_suffer_extra;
         [ObservableProperty] public ushort status_full_auto_1;
         [ObservableProperty] public ushort status_full_auto_2;
@@ -143,7 +143,7 @@ namespace FFXProjectEditor.Modules.BattleTracker
         [ObservableProperty] public ushort status_sos_auto_3;
         [ObservableProperty] public byte weak_level_full;
         [ObservableProperty] public byte weak_level_hp;
-        [ObservableProperty] public StatusSbyteList status_resist;
+        [ObservableProperty] public StatusByteList status_resist;
         [ObservableProperty] public ushort status_resist_extra;
         [ObservableProperty] public byte ctb;
         [ObservableProperty] public byte max_ctb;
