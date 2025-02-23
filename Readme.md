@@ -6,6 +6,7 @@ If you only want to use the tools, simply open the app when the game is open and
 
 * Tools are only compatible with the Steam version in Windows.
 * Tools are compatible with [Untitled Project X](https://steamcommunity.com/sharedfiles/filedetails/?id=683802394)
+* To refresh a tool data it has to be reopened (Excluding the Battle Tracker)
 
 ## How to set it up
 
