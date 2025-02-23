@@ -21,6 +21,7 @@
 			<ResourceDictionary.MergedDictionaries>
 				<ResourceInclude Source="/Modules/MonEditor/MonEditorDrop_Template.axaml"/>
 				<ResourceInclude Source="/ControlTemplates/Property_Template.axaml"/>
+				<ResourceInclude Source="/ControlTemplates/PropertyBool_Template.axaml"/>
 				<ResourceInclude Source="/ControlTemplates/GameIndex_Template.axaml"/>
 				<ResourceInclude Source="/ControlTemplates/Loot_Template.axaml"/>
 			</ResourceDictionary.MergedDictionaries>

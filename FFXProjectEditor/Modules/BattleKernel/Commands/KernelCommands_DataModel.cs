@@ -39,6 +39,7 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
 
         public List<string> CharacterOptions => new Character_Converter().Options.Values.ToList();
         public List<string> HitCalcTypeOptions => new HitCalcType_Converter().Options.Values.ToList();
+        public List<string> DamageFormulaOptions => new DamageFormula_Converter().Options.Values.ToList();
 
         bool IsExtraEnabled => HasExtraInfo();
         string FilterText { get; set; } = "";

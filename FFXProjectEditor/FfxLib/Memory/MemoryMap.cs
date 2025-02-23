@@ -24,6 +24,13 @@
         public const int OFFSET_BATTLE_ENEMY_SCALE_V4 = 931;
 
 
+
+        public const int ADDR_EQUIPMENT = 0xD30F2C;
+        public const int SIZE_EQUIPMENT = 0x16;
+        public const int COUNT_EQUIPMENT = 178;
+
+        public const int ADDR_ARENA_LIST = 0xD30C9C; // 104 monster counts and 35 monster unlocks.
+
         /******************************************
          * BATTLE
          ******************************************/
@@ -66,9 +73,61 @@
         /******************************************
          * SAVE DATA
          ******************************************/
-        public const int ADDR_SAVE_GIL = 0xD307D8;
-        public const int ADDR_SAVE_SPHERE_MOVIE = 0xD2CDDB;
+        public const int ADDR_SAVEDATA = 0xD2CA90;
+        public const int SIZE_SAVEDATA = 0x68C0;
+
+        public const int ADDR_SAVE_RIKKU_ALBHED = 0xD2CA90 + 0xD1; // bool
+
+        public const int ADDR_SAVE_TEMPLE_SEALS = 0xD2CA90 + 0xC5C; // 1 byte bitfield
+
+        public const int ADDR_SAVE_ALBHED_CHARACTERS = 0xD2CA90 + 0x3D10; // uint. Bitfield
+        public const int ADDR_SAVE_YOJIMBO_COMPAT = 0xD2CA90 + 0x3DA4; // uint
+
+        public const int ADDR_SAVE_ITEM_IDS = 0xD2CA90 + 0x3ECC; // 112 ushorts
+        public const int ADDR_SAVE_ITEM_COUNTS = 0xD2CA90 + 0x40CC; // 112 bytes
+        public const int COUNT_SAVE_ITEM = 112; // 112 items
+
+        public const int ADDR_SAVE_KEY_ITEMS = 0xD2CA90 + 0x448C; // 7 bytes. Bitfield
+
+
         public const int ADDR_SAVE_SPHERE_MUSIC = 0xD2CDDA;
+        public const int ADDR_SAVE_SPHERE_MOVIE = 0xD2CDDB;
+        public const int ADDR_SAVE_GIL = 0xD307D8;
         public const int ADDR_SAVE_STATSHEET_TIDUS = 0xD32060;
+
+        /******************************************
+         * BLITZBALL
+         ******************************************/
+        public const int ADDR_BLITZ_SCORE_OWN = 0xD2E0CE; // Byte
+        public const int ADDR_BLITZ_SCORE_OPPONENT = 0xD2E0CF; // Byte
+        public const int ADDR_BLITZ_HALF = 0xD2E0D0; // Byte. 0 = First; 1 = Second
+        public const int ADDR_BLITZ_WINS = 0xD2E1E2; // ushort
+        public const int POINTER_BLITZ_TIMER = 0xF2FF14; // Points to absolute address
+        public const int OFFSET_BLITZ_TIMER = 0x24C; // Short. Offset from POINTER_BLITZ_TIMER
+        //public const int POINTER_BLITZ_TIMER_2 = 0xF27F08; // Alternative in case the other one doesn't work
+        //public const int OFFSET_BLITZ_TIMER_2 = 0x6534;
+
+        /******************************************
+         * MINIGAMES
+         ******************************************/
+        public const int ADDR_LIGHT_TOTAL_ALL = 0xD2CE8C; // Ushort
+        public const int ADDR_LIGHT_TOTAL_DODGED = 0xD2CE8E; // Ushort
+        public const int ADDR_LIGHT_RECORD_STREAK = 0xD2CE90; // Ushort
+
+        public const int POINTER_CHOCOBO_TIMER = 0xF2FF14; // Points to absolute address
+        public const int OFFSET_CHOCOBO_TIMER = 0x1D8; // 2 bytes. Decimals, Seconds. Offset from POINTER_CHOCOBO_TIMER
+        public const int OFFSET_CHOCOBO_POINTS = 0x1FB; // 4 bytes. Baloons (Own/Trainer), Hits (Own/Trainer). Offset from POINTER_CHOCOBO_TIMER
+        //public const int POINTER_CHOCOBO_TIMER_2 = 0xF2FF10; // Points to absolute address
+        //public const int OFFSET_CHOCOBO_TIMER_2 = 0x330; // 2 bytes. Decimals, Seconds. Offset from POINTER_CHOCOBO_TIMER
+
+        /******************************************
+         * OVERDRIVES
+         ******************************************/
+        public const int ADDR_TIDUS_OD_COUNT = 0xD3083C; // int
+        public const int ADDR_TIDUS_OD_UNLOCK = 0xD307FC; // byte. bitflag (0,1,2,3)
+        public const int ADDR_WAKKA_BATTLE_COUNT = 0xD322FC; // int
+        public const int ADDR_WAKKA_OD_UNLOCK = 0xD307FE; // byte. bitflag (4,5,6,7)
+        public const int ADDR_AURON_OD_UNLOCK = 0xD307FC; // byte. bitflag (4,5,6,7)
+        public const int ADDR_KHIMARI_OD_UNLOCK = 0xD307FD; // byte. bitflag (4,5,6,7)
     }
 }

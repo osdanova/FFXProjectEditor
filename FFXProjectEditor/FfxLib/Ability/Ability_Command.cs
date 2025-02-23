@@ -41,7 +41,7 @@ namespace FFXProjectEditor.FfxLib.Ability
         [Data] public byte CostMp { get; set; }
         [Data] public byte CostOverdrive { get; set; }
         [Data] public byte AttackCritBonus { get; set; }
-        [Data] public byte DamageFormula { get; set; }
+        [Data] public DamageFormula_Enum DamageFormula { get; set; }
         [Data] public byte AttackAccuracy { get; set; }
         [Data] public byte AttackPower { get; set; }
         [Data] public byte HitCount { get; set; }

@@ -1,0 +1,493 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:converters="clr-namespace:FFXProjectEditor.Converters"
+             xmlns:global="clr-namespace:FFXProjectEditor"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.InventoryTracker_Control"
+			 Name="ThisControl">
+
+	<UserControl.Resources>
+		<converters:Character_Converter x:Key="CharacterConverter"/>
+		<converters:EquipmentType_Converter x:Key="EquipmentTypeConverter"/>
+		<converters:DamageFormula_Converter x:Key="DamageFormulaConverter"/>
+		<converters:GameCategory_Converter x:Key="GameCategoryConverter"/>
+		<converters:AssetCategory_Converter x:Key="AssetCategoryConverter"/>
+	</UserControl.Resources>
+	
+	<DockPanel>
+		<Grid ColumnDefinitions="*,*" DockPanel.Dock="Bottom">
+			<StackPanel Grid.Column="0" Height="50" HorizontalAlignment="Left" Orientation="Horizontal">
+				<Button IsVisible="False" Margin="5" Click="Button_Refresh">Refresh</Button>
+				<Label>Only Equipment that exists and is not flagged nor equipped will be sold</Label>
+			</StackPanel>
+			<StackPanel Grid.Column="1" Height="50" HorizontalAlignment="Right" Orientation="Horizontal">
+				<Button Margin="5" Click="Button_SellSelected">Sell Selected Equipment</Button>
+				<Button Margin="5" Click="Button_LoadIngame">Load Ingame</Button>
+			</StackPanel>
+		</Grid>
+
+
+		<TabControl>
+			<TabItem Header="Equipment">
+				<DataGrid Margin="20" Name="EquipmentGrid"
+					ItemsSource="{Binding EquipmentList, Mode=TwoWay}"
+					GridLinesVisibility="All" BorderThickness="1" BorderBrush="Gray">
+
+					<DataGrid.Columns>
+
+						<DataGridTextColumn Header="Sell Price" Binding="{Binding SellPrice}" IsReadOnly="True"/>
+						<DataGridTextColumn Header="Name Id" Binding="{Binding Name_id.Index}"/>
+						<DataGridTemplateColumn Header="">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Name_id.Category, Converter={StaticResource AssetCategoryConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.AssetCategoryOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						
+						<DataGridCheckBoxColumn Header="Exists" Binding="{Binding Exists}"/>
+						<DataGridCheckBoxColumn Header="Is Summon" Binding="{Binding FlagIsSummon}" />
+						<DataGridCheckBoxColumn Header="Is Hidden" Binding="{Binding FlagIsHidden}" />
+						<DataGridCheckBoxColumn Header="Is Celestial" Binding="{Binding FlagIsCelestial}" />
+						<DataGridCheckBoxColumn Header="Is Brotherhood" Binding="{Binding FlagIsBrotherhood}" />
+
+						<DataGridTemplateColumn Header="Character">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Character, Converter={StaticResource CharacterConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.CharacterOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Width="5" Header="" Binding="{Binding Character, Converter={StaticResource CharacterConverter}}" IsReadOnly="True"/>
+
+						<DataGridTemplateColumn Header="Type">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Type, Converter={StaticResource EquipmentTypeConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.TypeOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Width="5" Header="" Binding="{Binding Type, Converter={StaticResource EquipmentTypeConverter}}" IsReadOnly="True"/>
+
+						<DataGridTemplateColumn Header="Equipped To">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding CharacterEquipped, Converter={StaticResource CharacterConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.CharacterOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Width="5" Header="" Binding="{Binding CharacterEquipped, Converter={StaticResource CharacterConverter}}" IsReadOnly="True"/>
+
+						<DataGridTemplateColumn Header="Dmg Formula">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Dmg_formula, Converter={StaticResource DamageFormulaConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.DamageFormulaOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Width="5" Header="" Binding="{Binding Dmg_formula, Converter={StaticResource DamageFormulaConverter}}" IsReadOnly="True"/>
+						
+						<DataGridTextColumn Header="Power" Binding="{Binding Power}"/>
+						<DataGridTextColumn Header="Crit_bonus" Binding="{Binding Crit_bonus}"/>
+						<DataGridTextColumn Header="Slot_count" Binding="{Binding Slot_count}"/>
+
+						<DataGridTextColumn Header="Model Id" Binding="{Binding Model_id.Index}"/>
+						<DataGridTemplateColumn Header="">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Model_id.Category, Converter={StaticResource AssetCategoryConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.AssetCategoryOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						
+						<DataGridTextColumn Header="Ability 1" Binding="{Binding Ability1.Index}"/>
+						<DataGridTemplateColumn Header="">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Ability1.Category, Converter={StaticResource GameCategoryConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.GameCategoryOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Header="" Binding="{Binding Ability1.Name}"/>
+						
+						<DataGridTextColumn Header="Ability 2" Binding="{Binding Ability2.Index}"/>
+						<DataGridTemplateColumn Header="">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Ability2.Category, Converter={StaticResource GameCategoryConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.GameCategoryOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Header="" Binding="{Binding Ability2.Name}"/>
+						
+						<DataGridTextColumn Header="Ability 3" Binding="{Binding Ability3.Index}"/>
+						<DataGridTemplateColumn Header="">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Ability3.Category, Converter={StaticResource GameCategoryConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.GameCategoryOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Header="" Binding="{Binding Ability3.Name}"/>
+						
+						<DataGridTextColumn Header="Ability 4" Binding="{Binding Ability4.Index}"/>
+						<DataGridTemplateColumn Header="">
+							<DataGridTemplateColumn.CellTemplate>
+								<DataTemplate>
+									<ComboBox HorizontalAlignment="Stretch"
+											  SelectedItem="{Binding Ability4.Category, Converter={StaticResource GameCategoryConverter}, Mode=TwoWay}"
+											  ItemsSource="{Binding #ThisControl.DataContext.GameCategoryOptions}"
+									  />
+								</DataTemplate>
+							</DataGridTemplateColumn.CellTemplate>
+						</DataGridTemplateColumn>
+						<DataGridTextColumn Header="" Binding="{Binding Ability4.Name}"/>
+					</DataGrid.Columns>
+					
+				</DataGrid>
+			</TabItem>
+			
+			<TabItem Header="Inventory">
+				<ScrollViewer>
+					<StackPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[0]}" Loot_Count="{Binding InventoryCounts[0]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[1]}" Loot_Count="{Binding InventoryCounts[1]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[2]}" Loot_Count="{Binding InventoryCounts[2]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[3]}" Loot_Count="{Binding InventoryCounts[3]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[4]}" Loot_Count="{Binding InventoryCounts[4]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[5]}" Loot_Count="{Binding InventoryCounts[5]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[6]}" Loot_Count="{Binding InventoryCounts[6]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[7]}" Loot_Count="{Binding InventoryCounts[7]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[8]}" Loot_Count="{Binding InventoryCounts[8]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[9]}" Loot_Count="{Binding InventoryCounts[9]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[10]}" Loot_Count="{Binding InventoryCounts[10]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[11]}" Loot_Count="{Binding InventoryCounts[11]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[12]}" Loot_Count="{Binding InventoryCounts[12]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[13]}" Loot_Count="{Binding InventoryCounts[13]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[14]}" Loot_Count="{Binding InventoryCounts[14]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[15]}" Loot_Count="{Binding InventoryCounts[15]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[16]}" Loot_Count="{Binding InventoryCounts[16]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[17]}" Loot_Count="{Binding InventoryCounts[17]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[18]}" Loot_Count="{Binding InventoryCounts[18]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[19]}" Loot_Count="{Binding InventoryCounts[19]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[20]}" Loot_Count="{Binding InventoryCounts[20]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[21]}" Loot_Count="{Binding InventoryCounts[21]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[22]}" Loot_Count="{Binding InventoryCounts[22]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[23]}" Loot_Count="{Binding InventoryCounts[23]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[24]}" Loot_Count="{Binding InventoryCounts[24]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[25]}" Loot_Count="{Binding InventoryCounts[25]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[26]}" Loot_Count="{Binding InventoryCounts[26]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[27]}" Loot_Count="{Binding InventoryCounts[27]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[28]}" Loot_Count="{Binding InventoryCounts[28]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[29]}" Loot_Count="{Binding InventoryCounts[29]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[30]}" Loot_Count="{Binding InventoryCounts[30]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[31]}" Loot_Count="{Binding InventoryCounts[31]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[32]}" Loot_Count="{Binding InventoryCounts[32]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[33]}" Loot_Count="{Binding InventoryCounts[33]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[34]}" Loot_Count="{Binding InventoryCounts[34]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[35]}" Loot_Count="{Binding InventoryCounts[35]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[36]}" Loot_Count="{Binding InventoryCounts[36]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[37]}" Loot_Count="{Binding InventoryCounts[37]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[38]}" Loot_Count="{Binding InventoryCounts[38]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[39]}" Loot_Count="{Binding InventoryCounts[39]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[40]}" Loot_Count="{Binding InventoryCounts[40]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[41]}" Loot_Count="{Binding InventoryCounts[41]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[42]}" Loot_Count="{Binding InventoryCounts[42]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[43]}" Loot_Count="{Binding InventoryCounts[43]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[44]}" Loot_Count="{Binding InventoryCounts[44]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[45]}" Loot_Count="{Binding InventoryCounts[45]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[46]}" Loot_Count="{Binding InventoryCounts[46]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[47]}" Loot_Count="{Binding InventoryCounts[47]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[48]}" Loot_Count="{Binding InventoryCounts[48]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[49]}" Loot_Count="{Binding InventoryCounts[49]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[50]}" Loot_Count="{Binding InventoryCounts[50]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[51]}" Loot_Count="{Binding InventoryCounts[51]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[52]}" Loot_Count="{Binding InventoryCounts[52]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[53]}" Loot_Count="{Binding InventoryCounts[53]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[54]}" Loot_Count="{Binding InventoryCounts[54]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[55]}" Loot_Count="{Binding InventoryCounts[55]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[56]}" Loot_Count="{Binding InventoryCounts[56]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[57]}" Loot_Count="{Binding InventoryCounts[57]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[58]}" Loot_Count="{Binding InventoryCounts[58]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[59]}" Loot_Count="{Binding InventoryCounts[59]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[60]}" Loot_Count="{Binding InventoryCounts[60]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[61]}" Loot_Count="{Binding InventoryCounts[61]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[62]}" Loot_Count="{Binding InventoryCounts[62]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[63]}" Loot_Count="{Binding InventoryCounts[63]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[64]}" Loot_Count="{Binding InventoryCounts[64]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[65]}" Loot_Count="{Binding InventoryCounts[65]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[66]}" Loot_Count="{Binding InventoryCounts[66]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[67]}" Loot_Count="{Binding InventoryCounts[67]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[68]}" Loot_Count="{Binding InventoryCounts[68]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[69]}" Loot_Count="{Binding InventoryCounts[69]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[70]}" Loot_Count="{Binding InventoryCounts[70]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[71]}" Loot_Count="{Binding InventoryCounts[71]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[72]}" Loot_Count="{Binding InventoryCounts[72]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[73]}" Loot_Count="{Binding InventoryCounts[73]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[74]}" Loot_Count="{Binding InventoryCounts[74]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[75]}" Loot_Count="{Binding InventoryCounts[75]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[76]}" Loot_Count="{Binding InventoryCounts[76]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[77]}" Loot_Count="{Binding InventoryCounts[77]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[78]}" Loot_Count="{Binding InventoryCounts[78]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[79]}" Loot_Count="{Binding InventoryCounts[79]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[80]}" Loot_Count="{Binding InventoryCounts[80]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[81]}" Loot_Count="{Binding InventoryCounts[81]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[82]}" Loot_Count="{Binding InventoryCounts[82]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[83]}" Loot_Count="{Binding InventoryCounts[83]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[84]}" Loot_Count="{Binding InventoryCounts[84]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[85]}" Loot_Count="{Binding InventoryCounts[85]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[86]}" Loot_Count="{Binding InventoryCounts[86]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[87]}" Loot_Count="{Binding InventoryCounts[87]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[88]}" Loot_Count="{Binding InventoryCounts[88]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[89]}" Loot_Count="{Binding InventoryCounts[89]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[90]}" Loot_Count="{Binding InventoryCounts[90]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[91]}" Loot_Count="{Binding InventoryCounts[91]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[92]}" Loot_Count="{Binding InventoryCounts[92]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[93]}" Loot_Count="{Binding InventoryCounts[93]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[94]}" Loot_Count="{Binding InventoryCounts[94]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[95]}" Loot_Count="{Binding InventoryCounts[95]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[96]}" Loot_Count="{Binding InventoryCounts[96]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[97]}" Loot_Count="{Binding InventoryCounts[97]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[98]}" Loot_Count="{Binding InventoryCounts[98]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[99]}" Loot_Count="{Binding InventoryCounts[99]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[100]}" Loot_Count="{Binding InventoryCounts[100]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[101]}" Loot_Count="{Binding InventoryCounts[101]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[102]}" Loot_Count="{Binding InventoryCounts[102]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[103]}" Loot_Count="{Binding InventoryCounts[103]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[104]}" Loot_Count="{Binding InventoryCounts[104]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[105]}" Loot_Count="{Binding InventoryCounts[105]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[106]}" Loot_Count="{Binding InventoryCounts[106]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[107]}" Loot_Count="{Binding InventoryCounts[107]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[108]}" Loot_Count="{Binding InventoryCounts[108]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[109]}" Loot_Count="{Binding InventoryCounts[109]}"/>
+						</WrapPanel>
+						<WrapPanel>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[110]}" Loot_Count="{Binding InventoryCounts[110]}"/>
+							<global:Loot_Template Margin="5" Loot_Label="" Loot_IsLabelVisible="False" CategOptions="{Binding GameCategoryOptions}" Loot_Object="{Binding InventoryIds[111]}" Loot_Count="{Binding InventoryCounts[111]}"/>
+						</WrapPanel>
+					</StackPanel>
+				</ScrollViewer>
+			</TabItem>
+			<TabItem Header="Key Items">
+				<ScrollViewer>
+					<StackPanel>
+						<StackPanel>
+							<Label FontSize="20" FontWeight="Bold">Celestial Weapons</Label>
+							<Separator/>
+							<WrapPanel>
+								<global:PropertyBool_Template Margin="5" Property_Label="Cloudy Mirror" Property_Value="{Binding KeyItems.CloudyMirror}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Celestial Mirror" Property_Value="{Binding KeyItems.CelestialMirror}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Sun Crest" Property_Value="{Binding KeyItems.SunCrest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Sun Sigil" Property_Value="{Binding KeyItems.SunSigil}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Moon Crest" Property_Value="{Binding KeyItems.MoonCrest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Moon Sigil" Property_Value="{Binding KeyItems.MoonSigil}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Mars Crest" Property_Value="{Binding KeyItems.MarsCrest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Mars Sigil" Property_Value="{Binding KeyItems.MarsSigil}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Saturn Crest" Property_Value="{Binding KeyItems.SaturnCrest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Saturn Sigil" Property_Value="{Binding KeyItems.SaturnSigil}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Jupiter Crest" Property_Value="{Binding KeyItems.JupiterCrest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Jupiter Sigil" Property_Value="{Binding KeyItems.JupiterSigil}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Venus Crest" Property_Value="{Binding KeyItems.VenusCrest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Venus Sigil" Property_Value="{Binding KeyItems.VenusSigil}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Mercury Crest" Property_Value="{Binding KeyItems.MercuryCrest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Mercury Sigil" Property_Value="{Binding KeyItems.MercurySigil}" BorderWidth="200" ValueBorderWidth="50"/>
+							</WrapPanel>
+						</StackPanel>
+						<StackPanel>
+							<Label FontSize="20" FontWeight="Bold">Albhed Primers</Label>
+							<Separator/>
+							<Label>Note: These do not unlock the characters (Check debug menu)</Label>
+							<WrapPanel>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 1" Property_Value="{Binding KeyItems.Primer1}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 2" Property_Value="{Binding KeyItems.Primer2}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 3" Property_Value="{Binding KeyItems.Primer3}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 4" Property_Value="{Binding KeyItems.Primer4}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 5" Property_Value="{Binding KeyItems.Primer5}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 6" Property_Value="{Binding KeyItems.Primer6}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 7" Property_Value="{Binding KeyItems.Primer7}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 8" Property_Value="{Binding KeyItems.Primer8}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 9" Property_Value="{Binding KeyItems.Primer9}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 10" Property_Value="{Binding KeyItems.Primer10}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 11" Property_Value="{Binding KeyItems.Primer11}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 12" Property_Value="{Binding KeyItems.Primer12}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 13" Property_Value="{Binding KeyItems.Primer13}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 14" Property_Value="{Binding KeyItems.Primer14}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 15" Property_Value="{Binding KeyItems.Primer15}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 16" Property_Value="{Binding KeyItems.Primer16}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 17" Property_Value="{Binding KeyItems.Primer17}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 18" Property_Value="{Binding KeyItems.Primer18}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 19" Property_Value="{Binding KeyItems.Primer19}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 20" Property_Value="{Binding KeyItems.Primer20}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 21" Property_Value="{Binding KeyItems.Primer21}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 22" Property_Value="{Binding KeyItems.Primer22}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 23" Property_Value="{Binding KeyItems.Primer23}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 24" Property_Value="{Binding KeyItems.Primer24}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 25" Property_Value="{Binding KeyItems.Primer25}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Primer 26" Property_Value="{Binding KeyItems.Primer26}" BorderWidth="200" ValueBorderWidth="50"/>
+							</WrapPanel>
+						</StackPanel>
+						<StackPanel>
+							<Label FontSize="20" FontWeight="Bold">Yuna</Label>
+							<Separator/>
+							<WrapPanel>
+								<global:PropertyBool_Template Margin="5" Property_Label="Summoner's Soul" Property_Value="{Binding KeyItems.SummonersSoul}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Aeon's Soul" Property_Value="{Binding KeyItems.AeonsSoul}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Blossom Crown" Property_Value="{Binding KeyItems.BlossomCrown}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Flower Scepter" Property_Value="{Binding KeyItems.FlowerScepter}" BorderWidth="200" ValueBorderWidth="50"/>
+							</WrapPanel>
+						</StackPanel>
+						<StackPanel>
+							<Label FontSize="20" FontWeight="Bold">Others</Label>
+							<Separator/>
+							<WrapPanel>
+								<global:PropertyBool_Template Margin="5" Property_Label="Withered Bouquet" Property_Value="{Binding KeyItems.WitheredBouquet}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Flint" Property_Value="{Binding KeyItems.Flint}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Mark of Conquest" Property_Value="{Binding KeyItems.MarkOfConquest}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Jecht's Sphere" Property_Value="{Binding KeyItems.JechtsSphere}" BorderWidth="200" ValueBorderWidth="50"/>
+								<global:PropertyBool_Template Margin="5" Property_Label="Rusty Sword" Property_Value="{Binding KeyItems.RustySword}" BorderWidth="200" ValueBorderWidth="50"/>
+							</WrapPanel>
+						</StackPanel>
+					</StackPanel>
+				</ScrollViewer>
+			</TabItem>
+		</TabControl>
+	</DockPanel>
+</UserControl>

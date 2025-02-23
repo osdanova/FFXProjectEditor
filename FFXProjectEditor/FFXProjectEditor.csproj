@@ -38,6 +38,9 @@
       <Compile Update="ControlTemplates\Loot_Template.axaml.cs">
         <DependentUpon>Loot_Template.axaml</DependentUpon>
       </Compile>
+      <Compile Update="ControlTemplates\PropertyBool_Template.axaml.cs">
+        <DependentUpon>PropertyBool_Template.axaml</DependentUpon>
+      </Compile>
       <Compile Update="ControlTemplates\Property_Template.axaml.cs">
         <DependentUpon>Property_Template.axaml</DependentUpon>
       </Compile>

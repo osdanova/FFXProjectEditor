@@ -8,19 +8,19 @@ namespace FFXProjectEditor.FfxLib.Common
         /*
          * Operations to get and set info from game indices
          */
-        public static GameCategory_Enum GetCommandCategory(ushort entry)
+        public static byte GetGameCategory(ushort entry)
         {
-            return (GameCategory_Enum)((entry & 0xF000) >> 12);
+            return (byte)((entry & 0xF000) >> 12);
         }
 
-        public static ushort GetCommandIndex(ushort entry)
+        public static ushort GetGameIndex(ushort entry)
         {
             return (ushort)(entry & 0x0FFF);
         }
 
-        public static ushort SetCommandCategory(ushort entry, GameCategory_Enum valueEnum)
+        public static ushort SetGameCategory(ushort entry, byte valueEnum)
         {
-            byte value = (byte)valueEnum;
+            byte value = valueEnum;
 
             if (value < 0 || value > 0xF)
                 throw new ArgumentOutOfRangeException(nameof(value), "Value must be between 0x0 and 0xF.");
@@ -31,7 +31,7 @@ namespace FFXProjectEditor.FfxLib.Common
             return entry;
         }
 
-        public static ushort SetCommandIndex(ushort entry, ushort value)
+        public static ushort SetGameIndex(ushort entry, ushort value)
         {
             if (value < 0 || value > 0xFFF)
                 throw new ArgumentOutOfRangeException(nameof(value), "value must be between 0x000 and 0xFFF.");
@@ -42,44 +42,66 @@ namespace FFXProjectEditor.FfxLib.Common
             return entry;
         }
 
-        public static string GetCommandName(GameCategory_Enum category, ushort index)
+        public static string GetGameIndexName(byte category, ushort index)
         {
-            if (category == GameCategory_Enum.None && index == 0)
+            GameCategory_Enum categoryEnum = (GameCategory_Enum)category;
+
+            if (categoryEnum == GameCategory_Enum.None && (index == 0 || index == 255))
             {
                 return "";
             }
-            if (category == GameCategory_Enum.Items)
+            if (categoryEnum == GameCategory_Enum.Items)
             {
                 if (!Item_Dictionary.Instance.ContainsKey(index))
                     return "<NOT_INDEXED>";
                 return Item_Dictionary.Instance[index];
             }
-            if (category == GameCategory_Enum.Commands)
+            if (categoryEnum == GameCategory_Enum.Commands)
             {
                 if (!CommandCharacter_Dictionary.Instance.ContainsKey(index))
                     return "<NOT_INDEXED>";
                 return CommandCharacter_Dictionary.Instance[index];
             }
-            if (category == GameCategory_Enum.MonMagic1)
+            if (categoryEnum == GameCategory_Enum.MonMagic1)
             {
                 if (!CommandMonster1_Dictionary.Instance.ContainsKey(index))
                     return "<NOT_INDEXED>";
                 return CommandMonster1_Dictionary.Instance[index];
             }
-            if (category == GameCategory_Enum.MonMagic2)
+            if (categoryEnum == GameCategory_Enum.MonMagic2)
             {
                 if (!CommandMonster2_Dictionary.Instance.ContainsKey(index))
                     return "<NOT_INDEXED>";
                 return CommandMonster2_Dictionary.Instance[index];
             }
-            if (category == GameCategory_Enum.AutoAbilities)
+            if (categoryEnum == GameCategory_Enum.AutoAbilities)
             {
                 if (!AutoAbility_Dictionary.Instance.ContainsKey(index))
                     return "<NOT_INDEXED>";
                 return AutoAbility_Dictionary.Instance[index];
             }
 
-            throw new Exception("[FfxCommon_Util] GetCommandName: Invalid category");
+            throw new Exception("[FfxCommon_Util] GetGameIndexName: Invalid category");
+        }
+
+        public static string GetAssetIndexName(byte category, ushort index)
+        {
+            AssetCategory_Enum categoryEnum = (AssetCategory_Enum)category;
+
+            if (categoryEnum == AssetCategory_Enum.None && (index == 0 || index == 255))
+            {
+                return "";
+            }
+            if (categoryEnum == AssetCategory_Enum.EquipmentModel)
+            {
+                return "<TODO>";
+            }
+            if (categoryEnum == AssetCategory_Enum.EquipmentName)
+            {
+                return "<TODO>";
+            }
+
+            throw new Exception("[FfxCommon_Util] GetAssetIndexName: Invalid category");
         }
     }
 }

@@ -85,7 +85,7 @@ namespace FFXProjectEditor.Modules.BattleKernel.Commands
         [ObservableProperty] public byte costMp;
         [ObservableProperty] public byte costOverdrive;
         [ObservableProperty] public byte attackCritBonus;
-        [ObservableProperty] public byte damageFormula;
+        [ObservableProperty] public DamageFormula_Enum damageFormula;
         [ObservableProperty] public byte attackAccuracy;
         [ObservableProperty] public byte attackPower;
         [ObservableProperty] public byte hitCount;

@@ -23,6 +23,20 @@ public class Loot_Template : TemplatedControl
         get => GetValue(Loot_LabelProperty);
         set => SetValue(Loot_LabelProperty, value);
     }
+    //public bool IsLabelVisible
+    //{
+    //    get
+    //    {
+    //        bool isit = Loot_Label != null && Loot_Label != "";
+    //        return isit;
+    //    }
+    //}
+    public static readonly StyledProperty<bool> Loot_IsLabelVisibleProperty = AvaloniaProperty.Register<TemplatedControl, bool>(nameof(Loot_IsLabelVisible), defaultBindingMode: Avalonia.Data.BindingMode.TwoWay, defaultValue: true);
+    public bool Loot_IsLabelVisible
+    {
+        get => GetValue(Loot_IsLabelVisibleProperty);
+        set => SetValue(Loot_IsLabelVisibleProperty, value);
+    }
     public static readonly StyledProperty<GameIndex_Wrapper> Loot_ObjectProperty = AvaloniaProperty.Register<TemplatedControl, GameIndex_Wrapper>(nameof(Loot_Object), defaultBindingMode: Avalonia.Data.BindingMode.TwoWay);
     public GameIndex_Wrapper Loot_Object
     {

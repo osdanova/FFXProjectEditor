@@ -1,28 +1,27 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using FFXProjectEditor.FfxLib.Common;
-using FFXProjectEditor.FfxLib.Dictionaries;
 
 namespace FFXProjectEditor.Modules
 {
     public partial class GameIndex_Wrapper : ObservableObject
     {
-        [ObservableProperty][NotifyPropertyChangedFor(nameof(Name))] public GameCategory_Enum category;
+        [ObservableProperty][NotifyPropertyChangedFor(nameof(Name))] public byte category;
         [ObservableProperty][NotifyPropertyChangedFor(nameof(Name))] public ushort index;
 
-        string Name => FfxCommon_Util.GetCommandName(category, index);
+        string Name => FfxCommon_Util.GetGameIndexName(category, index);
 
         public static GameIndex_Wrapper Wrap(ushort gameIndex)
         {
             GameIndex_Wrapper wrapper = new();
-            wrapper.Category = FfxCommon_Util.GetCommandCategory(gameIndex);
-            wrapper.Index = FfxCommon_Util.GetCommandIndex(gameIndex);
+            wrapper.Category = FfxCommon_Util.GetGameCategory(gameIndex);
+            wrapper.Index = FfxCommon_Util.GetGameIndex(gameIndex);
             return wrapper;
         }
         public ushort Unwrap()
         {
             ushort gameIndex = new();
-            gameIndex = FfxCommon_Util.SetCommandCategory(gameIndex, category);
-            gameIndex = FfxCommon_Util.SetCommandIndex(gameIndex, index);
+            gameIndex = FfxCommon_Util.SetGameCategory(gameIndex, category);
+            gameIndex = FfxCommon_Util.SetGameIndex(gameIndex, index);
             return gameIndex;
         }
     }

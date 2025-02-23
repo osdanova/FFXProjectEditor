@@ -35,4 +35,47 @@ public partial class DebugMenu_Control : UserControl
     {
         DataModel.WriteBtlDebug();
     }
+
+    private void Button_WinMatch(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WinBlitzballGame();
+    }
+    private void Button_WinHalf(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WinBlitzballGame(false);
+    }
+
+    private void Button_SetBlitzballWins(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WriteBliztballWins();
+    }
+
+    private void Button_WinChocoboRace(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WinChocoboRace();
+    }
+    private void Button_ResetChocoboTimer(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.ResetChocoboTimer();
+    }
+
+    private void Button_WriteOverdriveData(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WriteOverdriveData();
+    }
+
+    private void Button_SetOtherData(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WriteOtherData();
+    }
+
+    private void Button_SetTempleSeals(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WriteTempleSeals();
+    }
+
+    private void Button_SetAlbhedPrimers(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        DataModel.WriteAlbhedCharacters();
+    }
 }

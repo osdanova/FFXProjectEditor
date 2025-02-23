@@ -1,0 +1,365 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:global="clr-namespace:FFXProjectEditor"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFXProjectEditor.ArenaTracker_Control">
+
+	<DockPanel>
+		<Grid ColumnDefinitions="*,*" DockPanel.Dock="Bottom">
+			<StackPanel Grid.Column="0" Height="50" HorizontalAlignment="Left" Orientation="Horizontal">
+				<Button IsVisible="False" Margin="5" Click="Button_Refresh">Refresh</Button>
+			</StackPanel>
+			<StackPanel Grid.Column="1" Height="50" HorizontalAlignment="Right" Orientation="Horizontal">
+				<Button Margin="5" Click="Button_LoadIngame">Load Ingame</Button>
+			</StackPanel>
+		</Grid>
+		
+		<ScrollViewer>
+			<StackPanel>
+				<Expander Header="Besaid" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Dingo" Property_Value="{Binding ArenaCounts[8]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Condor" Property_Value="{Binding ArenaCounts[27]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Water Flan" Property_Value="{Binding ArenaCounts[15]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Kilika" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Dinonix" Property_Value="{Binding ArenaCounts[21]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Killer Bee" Property_Value="{Binding ArenaCounts[30]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Yellow Element" Property_Value="{Binding ArenaCounts[61]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Ragora" Property_Value="{Binding ArenaCounts[38]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Mi'ihen Highroad" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Mi'ihen Fang" Property_Value="{Binding ArenaCounts[9]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Ipiria" Property_Value="{Binding ArenaCounts[22]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Floating Eye" Property_Value="{Binding ArenaCounts[34]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="White Element" Property_Value="{Binding ArenaCounts[62]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Raldo" Property_Value="{Binding ArenaCounts[0]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Vouivre" Property_Value="{Binding ArenaCounts[50]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Bomb" Property_Value="{Binding ArenaCounts[85]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Dual Horn" Property_Value="{Binding ArenaCounts[47]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Mushroom Rock Road" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Raptor" Property_Value="{Binding ArenaCounts[23]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Gandarewa" Property_Value="{Binding ArenaCounts[5]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Thunder Flan" Property_Value="{Binding ArenaCounts[16]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Red Element" Property_Value="{Binding ArenaCounts[63]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Lamashu" Property_Value="{Binding ArenaCounts[51]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Funguar" Property_Value="{Binding ArenaCounts[91]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Garuda" Property_Value="{Binding ArenaCounts[40]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Djose Road" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Garm" Property_Value="{Binding ArenaCounts[10]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Simurgh" Property_Value="{Binding ArenaCounts[28]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Bite Bug" Property_Value="{Binding ArenaCounts[31]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Snow Flan" Property_Value="{Binding ArenaCounts[17]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Bunyip" Property_Value="{Binding ArenaCounts[1]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Basilisk" Property_Value="{Binding ArenaCounts[79]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Ochu" Property_Value="{Binding ArenaCounts[83]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Thunder Plains" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Melusine" Property_Value="{Binding ArenaCounts[24]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Aerouge" Property_Value="{Binding ArenaCounts[6]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Buer" Property_Value="{Binding ArenaCounts[35]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Gold Element" Property_Value="{Binding ArenaCounts[64]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Kusariqqu" Property_Value="{Binding ArenaCounts[52]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Larva" Property_Value="{Binding ArenaCounts[89]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Iron Giant" Property_Value="{Binding ArenaCounts[76]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Qactuar" Property_Value="{Binding ArenaCounts[87]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Macalania" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Snow Wolf" Property_Value="{Binding ArenaCounts[11]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Iguion" Property_Value="{Binding ArenaCounts[25]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Wasp" Property_Value="{Binding ArenaCounts[32]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Evil Eye" Property_Value="{Binding ArenaCounts[36]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Ice Flan" Property_Value="{Binding ArenaCounts[18]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Blue Element" Property_Value="{Binding ArenaCounts[65]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Murussu" Property_Value="{Binding ArenaCounts[2]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Mafdet" Property_Value="{Binding ArenaCounts[3]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Xiphos" Property_Value="{Binding ArenaCounts[94]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Chimera" Property_Value="{Binding ArenaCounts[71]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Bikanel" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Sand Wolf" Property_Value="{Binding ArenaCounts[12]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Alcyone" Property_Value="{Binding ArenaCounts[29]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Mushussu" Property_Value="{Binding ArenaCounts[53]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Zu" Property_Value="{Binding ArenaCounts[41]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Sand Worm" Property_Value="{Binding ArenaCounts[42]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Cactuar" Property_Value="{Binding ArenaCounts[88]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Calm Lands" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Skoll" Property_Value="{Binding ArenaCounts[13]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Nebiros" Property_Value="{Binding ArenaCounts[33]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Flame Flan" Property_Value="{Binding ArenaCounts[19]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Shred" Property_Value="{Binding ArenaCounts[4]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Anacondaur" Property_Value="{Binding ArenaCounts[80]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Ogre" Property_Value="{Binding ArenaCounts[57]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Coeurl" Property_Value="{Binding ArenaCounts[73]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Chimera Brain" Property_Value="{Binding ArenaCounts[72]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Malboro" Property_Value="{Binding ArenaCounts[55]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Stolen Fayth Cavern" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Yowie" Property_Value="{Binding ArenaCounts[26]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Imp" Property_Value="{Binding ArenaCounts[7]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Dark Element" Property_Value="{Binding ArenaCounts[66]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Nidhogg" Property_Value="{Binding ArenaCounts[54]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Thorn" Property_Value="{Binding ArenaCounts[92]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Valaha" Property_Value="{Binding ArenaCounts[48]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Epaaj" Property_Value="{Binding ArenaCounts[68]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Ghost" Property_Value="{Binding ArenaCounts[44]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Tonberry" Property_Value="{Binding ArenaCounts[98]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Mt.Gagazet" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Bandersnatch" Property_Value="{Binding ArenaCounts[14]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Ahriman" Property_Value="{Binding ArenaCounts[37]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Dark Flan" Property_Value="{Binding ArenaCounts[20]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Grenade" Property_Value="{Binding ArenaCounts[86]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Grat" Property_Value="{Binding ArenaCounts[39]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Grendel" Property_Value="{Binding ArenaCounts[49]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Bashura" Property_Value="{Binding ArenaCounts[58]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Mandragora" Property_Value="{Binding ArenaCounts[84]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Behemoth" Property_Value="{Binding ArenaCounts[69]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Splasher" Property_Value="{Binding ArenaCounts[59]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Achelous" Property_Value="{Binding ArenaCounts[45]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Maelspike" Property_Value="{Binding ArenaCounts[46]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Inside Sin" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Exoray" Property_Value="{Binding ArenaCounts[93]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Wraith" Property_Value="{Binding ArenaCounts[97]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Gemini A" Property_Value="{Binding ArenaCounts[77]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Gemini B" Property_Value="{Binding ArenaCounts[78]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Demonolith" Property_Value="{Binding ArenaCounts[75]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Great Malboro" Property_Value="{Binding ArenaCounts[56]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Barbatos" Property_Value="{Binding ArenaCounts[90]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Adamantoise" Property_Value="{Binding ArenaCounts[81]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Behemoth King" Property_Value="{Binding ArenaCounts[70]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Omega Dungeon" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<global:Property_Template Margin="5" Property_Label="Zaurus" Property_Value="{Binding ArenaCounts[100]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Floating Death" Property_Value="{Binding ArenaCounts[102]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Black Element" Property_Value="{Binding ArenaCounts[67]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Halma" Property_Value="{Binding ArenaCounts[101]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Puroboros" Property_Value="{Binding ArenaCounts[95]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Spirit" Property_Value="{Binding ArenaCounts[96]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Machea" Property_Value="{Binding ArenaCounts[103]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Master Coeurl" Property_Value="{Binding ArenaCounts[74]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Master Tonberry" Property_Value="{Binding ArenaCounts[99]}" BorderWidth="200" ValueBorderWidth="50"/>
+						<global:Property_Template Margin="5" Property_Label="Varuna" Property_Value="{Binding ArenaCounts[82]}" BorderWidth="200" ValueBorderWidth="50"/>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Area Conquest" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Besaid</Label>
+							<Label>Stamina Tonic (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Stratoavis" Property_Value="{Binding ArenaUnlocks[16]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Kilika</Label>
+							<Label>Poison Fang (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Malboro Menace" Property_Value="{Binding ArenaUnlocks[20]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Mi'ihen Highroad</Label>
+							<Label>Soul Spring (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Kottos" Property_Value="{Binding ArenaUnlocks[21]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Mushroom Rock Road</Label>
+							<Label>Candle of Life (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Coeurlregina" Property_Value="{Binding ArenaUnlocks[25]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Djose Highroad</Label>
+							<Label>Petrify Grenade (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Jormungand" Property_Value="{Binding ArenaUnlocks[27]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Thunder Plains</Label>
+							<Label>Chocobo Wing (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Cactuar King" Property_Value="{Binding ArenaUnlocks[30]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Macalania Woods</Label>
+							<Label>Shining Gem (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Espada" Property_Value="{Binding ArenaUnlocks[34]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Bikanel</Label>
+							<Label>Shadow Gem (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Abyss Worm" Property_Value="{Binding ArenaUnlocks[17]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Calm Lands</Label>
+							<Label>Farplane Wind (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Chimerageist" Property_Value="{Binding ArenaUnlocks[24]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Cavern of the Stolen Fayth</Label>
+							<Label>Silver Hourglass (40)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Don Tonberry" Property_Value="{Binding ArenaUnlocks[33]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Mt.Gagazet</Label>
+							<Label>Blossom Crown</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Catoblepas" Property_Value="{Binding ArenaUnlocks[23]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Inside Sin</Label>
+							<Label>Lunar Curtain (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Abaddon" Property_Value="{Binding ArenaUnlocks[28]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>Omega Ruins</Label>
+							<Label>Designer Wallet (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Vorban" Property_Value="{Binding ArenaUnlocks[31]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Species Conquest" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>3 Wolves</Label>
+							<Label>Chocobo Feather (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Fenrir" Property_Value="{Binding ArenaUnlocks[10]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>3 Reptiles</Label>
+							<Label>Stamina Spring (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Ornitholestes" Property_Value="{Binding ArenaUnlocks[12]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>5 Birds</Label>
+							<Label>Mega Phoenix (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Pteryx" Property_Value="{Binding ArenaUnlocks[13]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>4 Wasps</Label>
+							<Label>Mana Tonic (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Hornet" Property_Value="{Binding ArenaUnlocks[14]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>4 Imps</Label>
+							<Label>Mana Spring (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Vidatu" Property_Value="{Binding ArenaUnlocks[9]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>4 Winged Eyes</Label>
+							<Label>Stamina Tablet (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="One-Eye" Property_Value="{Binding ArenaUnlocks[15]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>3 Flans</Label>
+							<Label>Twin Stars (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Jumbo Flan" Property_Value="{Binding ArenaUnlocks[11]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>3 Elementals</Label>
+							<Label>Star Curtain (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Nega Elemental" Property_Value="{Binding ArenaUnlocks[22]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>3 Armored</Label>
+							<Label>Gold Hourglass (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Tanket" Property_Value="{Binding ArenaUnlocks[8]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>4 Drakes</Label>
+							<Label>Purifying Salt (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Fafnir" Property_Value="{Binding ArenaUnlocks[19]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>5 Fungi</Label>
+							<Label>Healing Spring (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Sleep Sprout" Property_Value="{Binding ArenaUnlocks[32]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>5 Bombs</Label>
+							<Label>Turbo Ether (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Bomb King" Property_Value="{Binding ArenaUnlocks[29]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>5 Ruminants</Label>
+							<Label>Light Curtain (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Juggernaut" Property_Value="{Binding ArenaUnlocks[18]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>10 Iron Giants</Label>
+							<Label>Mana Tablet (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Ironclad" Property_Value="{Binding ArenaUnlocks[26]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+					</WrapPanel>
+				</Expander>
+				<Expander Header="Original" IsExpanded="True" HorizontalAlignment="Stretch">
+					<WrapPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>2 Area Conquest</Label>
+							<Label>Three Stars (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Earth Eater" Property_Value="{Binding ArenaUnlocks[3]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>2 Species Conquest</Label>
+							<Label>Supreme Gem (60)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Greater Sphere" Property_Value="{Binding ArenaUnlocks[5]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>6 Area Conquest</Label>
+							<Label>Door to Tomorrow (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Catastrophe" Property_Value="{Binding ArenaUnlocks[1]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>6 Species Conquest</Label>
+							<Label>Gambler's Spirit (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Th'uban" Property_Value="{Binding ArenaUnlocks[6]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>1 of each</Label>
+							<Label>Winning Formula (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Neslug" Property_Value="{Binding ArenaUnlocks[2]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>5 of each</Label>
+							<Label>Dark Matter (99)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Ultima Buster" Property_Value="{Binding ArenaUnlocks[4]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>2 underwater</Label>
+							<Label>Megaelixir (30)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Shinryu" Property_Value="{Binding ArenaUnlocks[7]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+						<StackPanel Orientation="Vertical">
+							<Label>10 of each</Label>
+							<Label>Master Sphere (10)</Label>
+							<global:PropertyBool_Template Margin="5" Property_Label="Nemesis" Property_Value="{Binding ArenaUnlocks[0]}" BorderWidth="200" ValueBorderWidth="50"/>
+						</StackPanel>
+					</WrapPanel>
+				</Expander>
+			</StackPanel>
+		</ScrollViewer>
+	</DockPanel>
+</UserControl>

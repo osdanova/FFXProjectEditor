@@ -6,6 +6,7 @@ namespace FFXProjectEditor.FfxLib.Dictionaries
     {
         public static Dictionary<ushort, string> Instance = new Dictionary<ushort, string>
         {
+            { 0, "Sensor" },
             { 1, "First Strike" },
             { 2, "Initiative" },
             { 3, "Counterattack" },

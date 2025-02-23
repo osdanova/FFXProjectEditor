@@ -22,7 +22,7 @@
 				</Border.Resources>
 
 				<StackPanel>
-					<Label Content="{TemplateBinding Loot_Label}"/>
+					<Label Content="{TemplateBinding Loot_Label}" IsVisible="{TemplateBinding Loot_IsLabelVisible}"/>
 					<DockPanel>
 						<StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
 							<TextBox Width="30" Margin="10 0 0 0" Text="{Binding Loot_Count, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>

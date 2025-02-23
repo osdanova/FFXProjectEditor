@@ -20,6 +20,8 @@
 			<MenuItem Header="Tools">
 				<MenuItem Header="Debug Menu" Click="MenuItem_DebugMenu" IsEnabled="{Binding ProcService.IsAlive}" />
 				<MenuItem Header="Battle Tracker" Click="MenuItem_BattleTracker" IsEnabled="{Binding ProcService.IsAlive}" />
+				<MenuItem Header="Inventory Tracker" Click="MenuItem_InventoryTracker" IsEnabled="{Binding ProcService.IsAlive}" />
+				<MenuItem Header="Arena Tracker" Click="MenuItem_ArenaTracker" IsEnabled="{Binding ProcService.IsAlive}" />
 				<MenuItem Header="TEST" Click="MenuItem_Test" IsVisible="False"></MenuItem>
 			</MenuItem>
 		</Menu>

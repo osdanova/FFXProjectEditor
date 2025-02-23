@@ -2,6 +2,11 @@
 
 A multiplatform solution to edit the files from the game "Final Fantasy X".
 
+If you only want to use the tools, simply open the app when the game is open and use them, no need to set anything up.
+
+* Tools are only compatible with the Steam version in Windows.
+* Tools are compatible with [Untitled Project X](https://steamcommunity.com/sharedfiles/filedetails/?id=683802394)
+
 ## How to set it up
 
 Download the executable from the [Releases](https://github.com/osdanova/FFXProjectEditor/releases) section.
@@ -21,9 +26,12 @@ Click on "Select Project Folder" at the bottom left and load your master folder.
 
 <img src="ReadmeAssets/MainWindow.png" width="700"/>
 
-### Monster Editor
+## File Modding
 
 * Available: When a project is loaded.
+
+### Monster Editor
+
 * Live testing: Loaded when combat starts so once a monster is saved the new data will apply to the next encounter.
 
 Edit the stats of all the monsters in the game. 
@@ -32,7 +40,6 @@ Edit the stats of all the monsters in the game.
 
 ### Items / Command / Monster Commands
 
-* Available: When a project is loaded.
 * Live testing: Loaded when the game starts. The "Load Ingame" button can be used to see changes without reloading.
 
 All of these files share their structure.
@@ -43,7 +50,7 @@ All of these files share their structure.
 
 <img src="ReadmeAssets/KernelItem.png" width="700"/>
 
-### Tools
+## Tools
 
 * Available: When the game has been hooked to the app.
 
@@ -53,13 +60,31 @@ Tools to play around with the game.
 
 A configuration menu with debug options.
 
-<img src="ReadmeAssets/DebugMenu.png" width="700"/>
+<img src="ReadmeAssets/DebugMenu1.png" width="700"/>
+<br/>
+<img src="ReadmeAssets/DebugMenu2.png" width="700"/>
 
 ### Battle Tracker
 
 A Menu to see and modify ally and enemy data. Note that the autorefresh can be enabled but editing and loading data is disabled while it is autorefreshing.
 
 <img src="ReadmeAssets/BattleTracker.png" width="700"/>
+
+### Inventory Tracker
+
+See all of your inventory and edit it as you need. You can also sell equipment in bulk!
+
+<img src="ReadmeAssets/InventoryEquipment.png" width="700"/>
+<br/>
+<img src="ReadmeAssets/InventoryItems.png" width="700"/>
+<br/>
+<img src="ReadmeAssets/InventoryKeyItems.png" width="700"/>
+
+### Arena Tracker
+
+Keep tabs on your arena captures.
+
+<img src="ReadmeAssets/ArenaTracker.png" width="700"/>
 
 ## Made with
 

@@ -5,6 +5,7 @@ using FFXProjectEditor.Services;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using Xe.BinaryMapper;
 
 namespace FFXProjectEditor;
@@ -19,7 +20,8 @@ public partial class Test_Control : UserControl
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         //ReadMemory();
-        PrintValues(MyValues);
+        //PrintValues(MyValues);
+        DoTest();
     }
 
     private void ReadMemory()
@@ -55,6 +57,17 @@ public partial class Test_Control : UserControl
         //{
         //    MemoryChr monsterChr = BinaryMapping.ReadObject<MemoryChr>(stream);
         //}
+    }
+
+    private void DoTest()
+    {
+        string[] directories = Directory.GetDirectories(Project_Service.Instance.Path_Btl);
+
+        List<int> fileCounts = new List<int>();
+        foreach(string dir in directories)
+        {
+            fileCounts.Add(Directory.GetFiles(dir).Length);
+        }
     }
 
     private void PrintValues(List<int> values)

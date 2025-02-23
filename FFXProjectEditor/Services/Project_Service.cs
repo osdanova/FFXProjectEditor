@@ -52,8 +52,10 @@ namespace FFXProjectEditor.Services
         /******************************************
          * Files
          ******************************************/
+        public string Path_Btl => Path.Combine(ProjectPath, "jppc", "battle", "btl");
         public string Path_Kernel => Path.Combine(ProjectPath, "jppc", "battle", "kernel");
         public string Path_KernelUs => Path.Combine(ProjectPath, "new_uspc", "battle", "kernel");
+        public string Path_KernelArmsRate => Path.Combine(Path_Kernel, "arms_rate.bin");
         public string Path_KernelCommand => Path.Combine(Path_Kernel, "command.bin");
         public string Path_KernelCommandUs => Path.Combine(Path_KernelUs, "command.bin");
         public string Path_KernelItemUs => Path.Combine(Path_KernelUs, "item.bin");

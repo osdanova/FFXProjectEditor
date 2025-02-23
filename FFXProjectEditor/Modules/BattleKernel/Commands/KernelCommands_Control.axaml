@@ -10,6 +10,7 @@
 
 	<UserControl.Resources>
 		<converters:Character_Converter x:Key="CharacterConverter"/>
+		<converters:DamageFormula_Converter x:Key="DamageFormulaConverter"/>
 		<local:HitCalcType_Converter x:Key="HitCalcTypeConverter"/>
 	</UserControl.Resources>
 
@@ -137,7 +138,19 @@
 				<DataGridTextColumn IsVisible="{Binding ShowCosts}" Header="Cost Mp" Binding="{Binding CostMp}"/>
 				<DataGridTextColumn IsVisible="{Binding ShowCosts}" Header="Cost Overdrive" Binding="{Binding CostOverdrive}"/>
 				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Attack Crit Bonus" Binding="{Binding AttackCritBonus}"/>
-				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Damage Formula" Binding="{Binding DamageFormula}"/>
+
+				<DataGridTemplateColumn IsVisible="{Binding ShowAttackData}" Header="Dmg Formula">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox HorizontalAlignment="Stretch"
+									  SelectedItem="{Binding DamageFormula, Converter={StaticResource DamageFormulaConverter}, Mode=TwoWay}"
+									  ItemsSource="{Binding #ThisControl.DataContext.DamageFormulaOptions}"
+									  />
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Width="5" Header="" Binding="{Binding DamageFormula, Converter={StaticResource DamageFormulaConverter}}" IsReadOnly="True"/>
+				
 				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Attack Accuracy" Binding="{Binding AttackAccuracy}"/>
 				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Attack Power" Binding="{Binding AttackPower}"/>
 				<DataGridTextColumn IsVisible="{Binding ShowAttackData}" Header="Hit Count" Binding="{Binding HitCount}"/>

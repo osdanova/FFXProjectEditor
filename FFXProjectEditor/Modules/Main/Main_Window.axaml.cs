@@ -94,6 +94,16 @@ public partial class Main_Window : Window
     {
         ContentFrame.Content = new BattleTracker_Control();
     }
+    private void MenuItem_InventoryTracker(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        ContentFrame.Content = new InventoryTracker_Control();
+    }
+    private void MenuItem_ArenaTracker(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+        ContentFrame.Content = new ArenaTracker_Control();
+    }
+
+
     private void MenuItem_Test(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         ContentFrame.Content = new Test_Control();
