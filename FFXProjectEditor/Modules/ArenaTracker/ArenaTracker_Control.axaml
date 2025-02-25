@@ -10,6 +10,7 @@
 		<Grid ColumnDefinitions="*,*" DockPanel.Dock="Bottom">
 			<StackPanel Grid.Column="0" Height="50" HorizontalAlignment="Left" Orientation="Horizontal">
 				<Button IsVisible="False" Margin="5" Click="Button_Refresh">Refresh</Button>
+				<CheckBox Margin="5" IsChecked="{Binding AutoRefreshEnabled}">Autorefresh</CheckBox>
 			</StackPanel>
 			<StackPanel Grid.Column="1" Height="50" HorizontalAlignment="Right" Orientation="Horizontal">
 				<Button Margin="5" Click="Button_LoadIngame">Load Ingame</Button>

@@ -1,6 +1,8 @@
+using Avalonia;
 using Avalonia.Controls;
 using FFXProjectEditor.FfxLib.Dictionaries;
 using FFXProjectEditor.FfxLib.Memory;
+using FFXProjectEditor.Modules.Test;
 using FFXProjectEditor.Services;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,16 +14,20 @@ namespace FFXProjectEditor;
 
 public partial class Test_Control : UserControl
 {
+    Test_DataModel DataModel { get; set; }
     public Test_Control()
     {
         InitializeComponent();
+        DataModel = new Test_DataModel();
+        DataContext = DataModel;
     }
 
     private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         //ReadMemory();
         //PrintValues(MyValues);
-        DoTest();
+        //DoTest();
+        Debug.WriteLine("DEBUG PRESSED");
     }
 
     private void ReadMemory()
@@ -82,4 +88,16 @@ public partial class Test_Control : UserControl
     {
         0x0,
     };
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        DataModel.StartReading(); // Start the timer when UserControl is loaded
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        DataModel.StopReading(); // Stop the timer when UserControl is unloaded
+    }
 }

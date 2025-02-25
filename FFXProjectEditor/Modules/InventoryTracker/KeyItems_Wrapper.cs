@@ -40,22 +40,23 @@ namespace FFXProjectEditor.Modules.InventoryTracker
         public bool AeonsSoul { get => KeyItemBytes.GetBit(31); set => KeyItemBytes.SetBit(31, value); }
         public bool JechtsSphere { get => KeyItemBytes.GetBit(32); set => KeyItemBytes.SetBit(32, value); }
         public bool RustySword { get => KeyItemBytes.GetBit(33); set => KeyItemBytes.SetBit(33, value); }
-        public bool SunCrest { get => KeyItemBytes.GetBit(34); set => KeyItemBytes.SetBit(34, value); }
-        public bool SunSigil { get => KeyItemBytes.GetBit(35); set => KeyItemBytes.SetBit(35, value); }
-        public bool MoonCrest { get => KeyItemBytes.GetBit(36); set => KeyItemBytes.SetBit(36, value); }
-        public bool MoonSigil { get => KeyItemBytes.GetBit(37); set => KeyItemBytes.SetBit(37, value); }
-        public bool MarsCrest { get => KeyItemBytes.GetBit(38); set => KeyItemBytes.SetBit(38, value); }
-        public bool MarsSigil { get => KeyItemBytes.GetBit(39); set => KeyItemBytes.SetBit(39, value); }
-        public bool MarkOfConquest { get => KeyItemBytes.GetBit(40); set => KeyItemBytes.SetBit(40, value); }
-        public bool SaturnCrest { get => KeyItemBytes.GetBit(41); set => KeyItemBytes.SetBit(41, value); }
-        public bool SaturnSigil { get => KeyItemBytes.GetBit(42); set => KeyItemBytes.SetBit(42, value); }
-        public bool JupiterCrest { get => KeyItemBytes.GetBit(43); set => KeyItemBytes.SetBit(43, value); }
-        public bool JupiterSigil { get => KeyItemBytes.GetBit(44); set => KeyItemBytes.SetBit(44, value); }
-        public bool VenusCrest { get => KeyItemBytes.GetBit(45); set => KeyItemBytes.SetBit(45, value); }
-        public bool VenusSigil { get => KeyItemBytes.GetBit(46); set => KeyItemBytes.SetBit(46, value); }
-        public bool MercuryCrest { get => KeyItemBytes.GetBit(47); set => KeyItemBytes.SetBit(47, value); }
-        public bool MercurySigil { get => KeyItemBytes.GetBit(48); set => KeyItemBytes.SetBit(48, value); }
-        public bool BlossomCrown { get => KeyItemBytes.GetBit(49); set => KeyItemBytes.SetBit(49, value); }
-        public bool FlowerScepter { get => KeyItemBytes.GetBit(50); set => KeyItemBytes.SetBit(50, value); }
+        // ???
+        public bool SunCrest { get => KeyItemBytes.GetBit(35); set => KeyItemBytes.SetBit(35, value); }
+        public bool SunSigil { get => KeyItemBytes.GetBit(36); set => KeyItemBytes.SetBit(36, value); }
+        public bool MoonCrest { get => KeyItemBytes.GetBit(37); set => KeyItemBytes.SetBit(37, value); }
+        public bool MoonSigil { get => KeyItemBytes.GetBit(38); set => KeyItemBytes.SetBit(38, value); }
+        public bool MarsCrest { get => KeyItemBytes.GetBit(39); set => KeyItemBytes.SetBit(39, value); }
+        public bool MarsSigil { get => KeyItemBytes.GetBit(40); set => KeyItemBytes.SetBit(40, value); }
+        public bool MarkOfConquest { get => KeyItemBytes.GetBit(41); set => KeyItemBytes.SetBit(41, value); }
+        public bool SaturnCrest { get => KeyItemBytes.GetBit(42); set => KeyItemBytes.SetBit(42, value); }
+        public bool SaturnSigil { get => KeyItemBytes.GetBit(43); set => KeyItemBytes.SetBit(43, value); }
+        public bool JupiterCrest { get => KeyItemBytes.GetBit(44); set => KeyItemBytes.SetBit(44, value); }
+        public bool JupiterSigil { get => KeyItemBytes.GetBit(45); set => KeyItemBytes.SetBit(45, value); }
+        public bool VenusCrest { get => KeyItemBytes.GetBit(46); set => KeyItemBytes.SetBit(46, value); }
+        public bool VenusSigil { get => KeyItemBytes.GetBit(47); set => KeyItemBytes.SetBit(47, value); }
+        public bool MercuryCrest { get => KeyItemBytes.GetBit(48); set => KeyItemBytes.SetBit(48, value); }
+        public bool MercurySigil { get => KeyItemBytes.GetBit(49); set => KeyItemBytes.SetBit(49, value); }
+        public bool BlossomCrown { get => KeyItemBytes.GetBit(50); set => KeyItemBytes.SetBit(50, value); }
+        public bool FlowerScepter { get => KeyItemBytes.GetBit(51); set => KeyItemBytes.SetBit(51, value); }
     }
 }

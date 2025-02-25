@@ -1,3 +1,4 @@
+using Avalonia;
 using Avalonia.Controls;
 using FFXProjectEditor.Modules.ArenaTracker;
 
@@ -21,5 +22,17 @@ public partial class ArenaTracker_Control : UserControl
     private void Button_LoadIngame(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
     {
         DataModel.WriteArenaData();
+    }
+
+    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnAttachedToVisualTree(e);
+        DataModel.StartReading(); // Start the timer when UserControl is loaded
+    }
+
+    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
+    {
+        base.OnDetachedFromVisualTree(e);
+        DataModel.StopReading(); // Stop the timer when UserControl is unloaded
     }
 }
